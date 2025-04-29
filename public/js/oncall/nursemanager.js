@@ -3,16 +3,17 @@ $(document).ready(function () {
     $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
         let targetTab = $(e.target).attr("href"); // Get the target tab ID
         
-        if (targetTab === "#cardiology") {
+        if (targetTab === "#nursemanager") {
             setTimeout(function () {
-                let selectedDate = $("#cdcalendardate").val();
+                let selectedDate = $("#nmcalendardate").val();
                 initCalendar(selectedDate); // Reinitialize the calendar
             }, 100); // Small delay to ensure the tab transition is complete
+        
 
             "use strict";
 
             var calendar;
-            var calendarEl = document.getElementById('cardiology-calendar');
+            var calendarEl = document.getElementById('nursemanager-calendar');
 
             function initCalendar(selectedDate) {
                 if (calendar) {
@@ -34,26 +35,24 @@ $(document).ready(function () {
                     editable: true,
                     events: function(fetchInfo, successCallback, failureCallback) {
                         $.ajax({
-                            url: config.routes.oncallassignment.cardiology.getlist,
+                            url: config.routes.oncallassignment.nursemanager.getlist,
                             method: 'GET',
                             success: function(data) {
                                 if (data.status === 'success') {
                                     const positionHierarchy = {
-                                        "consultant": 0, 
-                                        "firstcall": 1,
-                                        "secondcall": 2,
-                                        "cardiologist": 3,
-                                        "mo": 4,
-                                        "ep": 5
+                                        "firstcall": 0, 
+                                        "secondcall": 1,
+                                        "weekendam": 2,
+                                        "weekendpm": 3,
+                                        "oncall": 4,
                                     };
                 
                                     const positionLabels = {
-                                        "consultant": "Cons",
                                         "firstcall": "1st",
                                         "secondcall": "2nd",
-                                        "cardiologist": "Cardio",
-                                        "mo": "MO",
-                                        "ep": "EP"
+                                        "weekendam": "AM",
+                                        "weekendpm": "PM",
+                                        "oncall": "OC",
                                     };
                 
                                     let events = data.response
@@ -65,12 +64,11 @@ $(document).ready(function () {
                                     .map(item => {
                                         let color;
                                         switch (item.position_type) {
-                                            case 'consultant': color = '#87CEFA'; break;
-                                            case 'firstcall': color = '#7FFFD4'; break;
-                                            case 'secondcall': color = '#AFEEEE'; break;
-                                            case 'cardiologist': color = '#40E0D0'; break;
-                                            case 'mo': color = '#F5FFFA'; break;
-                                            case 'ep': color = '#EEE8AA'; break;
+                                            case 'firstcall': color = '#87CEFA'; break;
+                                            case 'secondcall': color = '#7FFFD4'; break;
+                                            case 'weekendam': color = '#AFEEEE'; break;
+                                            case 'weekendpm': color = '#40E0D0'; break;
+                                            case 'oncall': color = '#F5FFFA'; break;
                                             default: color = '#F0E68C';
                                         }
                 
@@ -110,11 +108,11 @@ $(document).ready(function () {
                         // console.log("Event ID:", sso);
                         // console.log("Event Name:", date);
 
-                        $("#occdid").val(id); 
-                        $("#updatecdoncalldate").val(date);
-                        $("#updatecdstaff").val(sso).trigger("change");  
+                        $("#ocnmid").val(id); 
+                        $("#updatenmoncalldate").val(date);
+                        $("#updatenmstaff").val(sso).trigger("change");  
 
-                        $('#updatecd-modal').modal('show');
+                        $('#updatenm-modal').modal('show');
 
                     }
                 });
@@ -129,30 +127,12 @@ $(document).ready(function () {
                 }
             });
 
-            // Set default date to today on page load
-            let today = moment().format('YYYY-MM-DD');
-            $("#cdcalendardate").val(today);
-            initCalendar(today); // Initialize the calendar with today's date
+            $('.save-ocnm').on('click', async function() {
 
-            // Update calendar when date changes
-            $("#cdcalendardate").on("change", function () {
-                let selectedDate = $(this).val();
-                initCalendar(selectedDate); // Reinitialize the calendar with the selected date
-            });
-
-
-            $('.assign-cd').on('click', function() {
-
-                $('#assigncd-modal').modal('show');
-
-            });
-
-            $('.save-occd').on('click', async function() {
-
-                var form        = $(this).parent().parent().find('form#oncallcardiologyform');
+                var form        = $(this).parent().parent().find('form#oncallnursemanagerform');
                 var formData    = await getAllInput(form);
                 var data        = processSerialize(formData);
-                var url         = config.routes.oncallassignment.cardiology.save;
+                var url         = config.routes.oncallassignment.nursemanager.save;
 
                 $.ajax({
                     url: url,
@@ -175,7 +155,7 @@ $(document).ready(function () {
 
                         setTimeout(function() {
                             calendar.refetchEvents();
-                            $('#assigncd-modal').modal('hide');
+                            $('#assignnm-modal').modal('hide');
                         }, 1000);
                     },
                     error: function(xhr, status, error) {
@@ -185,12 +165,12 @@ $(document).ready(function () {
 
             });
 
-            $('.update-occd').on('click', async function() {
+            $('.update-ocnm').on('click', async function() {
 
-                var form        = $(this).parent().parent().find('form#updateoncallcardiologyform');
+                var form        = $(this).parent().parent().find('form#updateoncallnursemanagerform');
                 var formData    = await getAllInput(form);
                 var data        = processSerialize(formData);
-                var url         = config.routes.oncallassignment.cardiology.update;
+                var url         = config.routes.oncallassignment.nursemanager.update;
 
                 $.ajax({
                     url: url,
@@ -213,7 +193,7 @@ $(document).ready(function () {
 
                         setTimeout(function() {
                             calendar.refetchEvents();
-                            $('#updatecd-modal').modal('hide');
+                            $('#updatenm-modal').modal('hide');
                         }, 1000);
                     },
                     error: function(xhr, status, error) {
@@ -223,43 +203,39 @@ $(document).ready(function () {
 
             });
 
-            //Checking Date CT
-            //Consulltant start
-            $('#cdconsoncallend').prop('disabled', true);
-            $('#cdconsoncallstart').on('change', function() {
-                let startDate = $(this).val();
-                if (startDate) {
-                    $('#cdconsoncallend').prop('disabled', false);
-                    $('#cdconsoncallend').attr('min', startDate);
-                } else {
-                    $('#cdconsoncallend').val('').prop('disabled', true);
-                }
+            // Set default date to today on page load
+            let today = moment().format('YYYY-MM-DD');
+            $("#nmcalendardate").val(today);
+            initCalendar(today); // Initialize the calendar with today's date
+
+            // Update calendar when date changes
+            $("#nmcalendardate").on("change", function () {
+                let selectedDate = $(this).val();
+                initCalendar(selectedDate); // Reinitialize the calendar with the selected date
             });
 
-            $('#cdconsoncallend').on('change', function() {
-                let startDate = $('#cdconsoncallstart').val();
-                let endDate = $(this).val();
-                if (endDate < startDate) {
-                    alert("End date cannot be before the start date!");
-                    $(this).val('');
-                }
-            });
-            //Consulltant end
 
+            $('.assign-nm').on('click', function() {
+
+                $('#assignnm-modal').modal('show');
+
+            });
+
+            //Checking Date NM Start
             //Firstcall start
-            $('#cdcardiooncallend').prop('disabled', true);
-            $('#cdcardiooncallstart').on('change', function() {
+            $('#nmfirstoncallend').prop('disabled', true);
+            $('#nmfirstoncallstart').on('change', function() {
                 let startDate = $(this).val();
                 if (startDate) {
-                    $('#cdcardiooncallend').prop('disabled', false);
-                    $('#cdcardiooncallend').attr('min', startDate);
+                    $('#nmfirstoncallend').prop('disabled', false);
+                    $('#nmfirstoncallend').attr('min', startDate);
                 } else {
-                    $('#cdcardiooncallend').val('').prop('disabled', true);
+                    $('#nmfirstoncallend').val('').prop('disabled', true);
                 }
             });
 
-            $('#cdcardiooncallend').on('change', function() {
-                let startDate = $('#cdcardiooncallstart').val();
+            $('#nmfirstoncallend').on('change', function() {
+                let startDate = $('#nmfirstoncallstart').val();
                 let endDate = $(this).val();
                 if (endDate < startDate) {
                     alert("End date cannot be before the start date!");
@@ -269,19 +245,19 @@ $(document).ready(function () {
             //Firstcall end
 
             //Secondcall start
-            $('#cdfirstoncallend').prop('disabled', true);
-            $('#cdfirstoncallstart').on('change', function() {
+            $('#nmseconcallend').prop('disabled', true);
+            $('#nmseconcallstart').on('change', function() {
                 let startDate = $(this).val();
                 if (startDate) {
-                    $('#cdfirstoncallend').prop('disabled', false);
-                    $('#cdfirstoncallend').attr('min', startDate);
+                    $('#nmseconcallend').prop('disabled', false);
+                    $('#nmseconcallend').attr('min', startDate);
                 } else {
-                    $('#cdfirstoncallend').val('').prop('disabled', true);
+                    $('#nmseconcallend').val('').prop('disabled', true);
                 }
             });
 
-            $('#cdfirstoncallend').on('change', function() {
-                let startDate = $('#cdfirstoncallstart').val();
+            $('#nmseconcallend').on('change', function() {
+                let startDate = $('#nmseconcallstart').val();
                 let endDate = $(this).val();
                 if (endDate < startDate) {
                     alert("End date cannot be before the start date!");
@@ -290,72 +266,72 @@ $(document).ready(function () {
             });
             //Secondcall end
 
-            //Thirdcall start
-            $('#cdseconcallend').prop('disabled', true);
-            $('#cdseconcallstart').on('change', function() {
+            //WeekendAm start
+            $('#nmamoncallend').prop('disabled', true);
+            $('#nmamoncallstart').on('change', function() {
                 let startDate = $(this).val();
                 if (startDate) {
-                    $('#cdseconcallend').prop('disabled', false);
-                    $('#cdseconcallend').attr('min', startDate);
+                    $('#nmamoncallend').prop('disabled', false);
+                    $('#nmamoncallend').attr('min', startDate);
                 } else {
-                    $('#cdseconcallend').val('').prop('disabled', true);
+                    $('#nmamoncallend').val('').prop('disabled', true);
                 }
             });
 
-            $('#cdseconcallend').on('change', function() {
-                let startDate = $('#cdseconcallstart').val();
+            $('#nmamoncallend').on('change', function() {
+                let startDate = $('#nmamoncallstart').val();
                 let endDate = $(this).val();
                 if (endDate < startDate) {
                     alert("End date cannot be before the start date!");
                     $(this).val('');
                 }
             });
-            //Thirdcall end
+            //WeekendAm end
 
-            //ICUAM start
-            $('#cdmooncallend').prop('disabled', true);
-            $('#cdmooncallstart').on('change', function() {
+            //WeekendPm start
+            $('#nmpmoncallend').prop('disabled', true);
+            $('#nmpmoncallstart').on('change', function() {
                 let startDate = $(this).val();
                 if (startDate) {
-                    $('#cdmooncallend').prop('disabled', false);
-                    $('#cdmooncallend').attr('min', startDate);
+                    $('#nmpmoncallend').prop('disabled', false);
+                    $('#nmpmoncallend').attr('min', startDate);
                 } else {
-                    $('#cdmooncallend').val('').prop('disabled', true);
+                    $('#nmpmoncallend').val('').prop('disabled', true);
                 }
             });
 
-            $('#cdmooncallend').on('change', function() {
-                let startDate = $('#cdmooncallstart').val();
+            $('#nmpmoncallend').on('change', function() {
+                let startDate = $('#nmpmoncallstart').val();
                 let endDate = $(this).val();
                 if (endDate < startDate) {
                     alert("End date cannot be before the start date!");
                     $(this).val('');
                 }
             });
-            //ICUAM end
+            //WeekendPm end
 
-            //ICUPM start
-            $('#cdeponcallend').prop('disabled', true);
-            $('#cdeponcallstart').on('change', function() {
+            //Oncall start
+            $('#nmoncallend').prop('disabled', true);
+            $('#nmoncallstart').on('change', function() {
                 let startDate = $(this).val();
                 if (startDate) {
-                    $('#cdeponcallend').prop('disabled', false);
-                    $('#cdeponcallend').attr('min', startDate);
+                    $('#nmoncallend').prop('disabled', false);
+                    $('#nmoncallend').attr('min', startDate);
                 } else {
-                    $('#cdeponcallend').val('').prop('disabled', true);
+                    $('#nmoncallend').val('').prop('disabled', true);
                 }
             });
 
-            $('#cdeponcallend').on('change', function() {
-                let startDate = $('#cdeponcallstart').val();
+            $('#nmoncallend').on('change', function() {
+                let startDate = $('#nmoncallstart').val();
                 let endDate = $(this).val();
                 if (endDate < startDate) {
                     alert("End date cannot be before the start date!");
                     $(this).val('');
                 }
             });
-            //ICUPM end
-            //Checking Date CT End 
+            //Oncall end
+            //Checking Date NM End 
         }
     }); 
 });

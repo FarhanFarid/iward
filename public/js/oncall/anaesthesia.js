@@ -3,16 +3,16 @@ $(document).ready(function () {
     $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
         let targetTab = $(e.target).attr("href"); // Get the target tab ID
         
-        if (targetTab === "#cardiology") {
+        if (targetTab === "#anaes") {
             setTimeout(function () {
-                let selectedDate = $("#cdcalendardate").val();
+                let selectedDate = $("#anaescalendardate").val();
                 initCalendar(selectedDate); // Reinitialize the calendar
             }, 100); // Small delay to ensure the tab transition is complete
 
             "use strict";
 
             var calendar;
-            var calendarEl = document.getElementById('cardiology-calendar');
+            var calendarEl = document.getElementById('anaes-calendar');
 
             function initCalendar(selectedDate) {
                 if (calendar) {
@@ -34,26 +34,22 @@ $(document).ready(function () {
                     editable: true,
                     events: function(fetchInfo, successCallback, failureCallback) {
                         $.ajax({
-                            url: config.routes.oncallassignment.cardiology.getlist,
+                            url: config.routes.oncallassignment.anaes.getlist,
                             method: 'GET',
                             success: function(data) {
                                 if (data.status === 'success') {
                                     const positionHierarchy = {
                                         "consultant": 0, 
-                                        "firstcall": 1,
-                                        "secondcall": 2,
-                                        "cardiologist": 3,
-                                        "mo": 4,
-                                        "ep": 5
+                                        "sr": 1,
+                                        "sricu": 2,
+                                        "mo": 3,
                                     };
                 
                                     const positionLabels = {
                                         "consultant": "Cons",
-                                        "firstcall": "1st",
-                                        "secondcall": "2nd",
-                                        "cardiologist": "Cardio",
+                                        "sr": "SR",
+                                        "sricu": "SR ICU",
                                         "mo": "MO",
-                                        "ep": "EP"
                                     };
                 
                                     let events = data.response
@@ -66,11 +62,9 @@ $(document).ready(function () {
                                         let color;
                                         switch (item.position_type) {
                                             case 'consultant': color = '#87CEFA'; break;
-                                            case 'firstcall': color = '#7FFFD4'; break;
-                                            case 'secondcall': color = '#AFEEEE'; break;
-                                            case 'cardiologist': color = '#40E0D0'; break;
-                                            case 'mo': color = '#F5FFFA'; break;
-                                            case 'ep': color = '#EEE8AA'; break;
+                                            case 'sr': color = '#7FFFD4'; break;
+                                            case 'sricu': color = '#AFEEEE'; break;
+                                            case 'mo': color = '#40E0D0'; break;
                                             default: color = '#F0E68C';
                                         }
                 
@@ -110,11 +104,11 @@ $(document).ready(function () {
                         // console.log("Event ID:", sso);
                         // console.log("Event Name:", date);
 
-                        $("#occdid").val(id); 
-                        $("#updatecdoncalldate").val(date);
-                        $("#updatecdstaff").val(sso).trigger("change");  
+                        $("#ocanaesid").val(id); 
+                        $("#updateanaesoncalldate").val(date);
+                        $("#updateanaesstaff").val(sso).trigger("change");  
 
-                        $('#updatecd-modal').modal('show');
+                        $('#updateanaes-modal').modal('show');
 
                     }
                 });
@@ -131,28 +125,28 @@ $(document).ready(function () {
 
             // Set default date to today on page load
             let today = moment().format('YYYY-MM-DD');
-            $("#cdcalendardate").val(today);
+            $("#anaescalendardate").val(today);
             initCalendar(today); // Initialize the calendar with today's date
 
             // Update calendar when date changes
-            $("#cdcalendardate").on("change", function () {
+            $("#anaescalendardate").on("change", function () {
                 let selectedDate = $(this).val();
                 initCalendar(selectedDate); // Reinitialize the calendar with the selected date
             });
 
 
-            $('.assign-cd').on('click', function() {
+            $('.assign-anaes').on('click', function() {
 
-                $('#assigncd-modal').modal('show');
+                $('#assignanaes-modal').modal('show');
 
             });
 
-            $('.save-occd').on('click', async function() {
+            $('.save-ocanaes').on('click', async function() {
 
-                var form        = $(this).parent().parent().find('form#oncallcardiologyform');
+                var form        = $(this).parent().parent().find('form#oncallanaesform');
                 var formData    = await getAllInput(form);
                 var data        = processSerialize(formData);
-                var url         = config.routes.oncallassignment.cardiology.save;
+                var url         = config.routes.oncallassignment.anaes.save;
 
                 $.ajax({
                     url: url,
@@ -175,7 +169,7 @@ $(document).ready(function () {
 
                         setTimeout(function() {
                             calendar.refetchEvents();
-                            $('#assigncd-modal').modal('hide');
+                            $('#assignanaes-modal').modal('hide');
                         }, 1000);
                     },
                     error: function(xhr, status, error) {
@@ -185,12 +179,12 @@ $(document).ready(function () {
 
             });
 
-            $('.update-occd').on('click', async function() {
+            $('.update-ocanaes').on('click', async function() {
 
-                var form        = $(this).parent().parent().find('form#updateoncallcardiologyform');
+                var form        = $(this).parent().parent().find('form#updateoncallanaesform');
                 var formData    = await getAllInput(form);
                 var data        = processSerialize(formData);
-                var url         = config.routes.oncallassignment.cardiology.update;
+                var url         = config.routes.oncallassignment.anaes.update;
 
                 $.ajax({
                     url: url,
@@ -213,7 +207,7 @@ $(document).ready(function () {
 
                         setTimeout(function() {
                             calendar.refetchEvents();
-                            $('#updatecd-modal').modal('hide');
+                            $('#updateanaes-modal').modal('hide');
                         }, 1000);
                     },
                     error: function(xhr, status, error) {
@@ -225,19 +219,19 @@ $(document).ready(function () {
 
             //Checking Date CT
             //Consulltant start
-            $('#cdconsoncallend').prop('disabled', true);
-            $('#cdconsoncallstart').on('change', function() {
+            $('#anaesconsoncallend').prop('disabled', true);
+            $('#anaesconsoncallstart').on('change', function() {
                 let startDate = $(this).val();
                 if (startDate) {
-                    $('#cdconsoncallend').prop('disabled', false);
-                    $('#cdconsoncallend').attr('min', startDate);
+                    $('#anaesconsoncallend').prop('disabled', false);
+                    $('#anaesconsoncallend').attr('min', startDate);
                 } else {
-                    $('#cdconsoncallend').val('').prop('disabled', true);
+                    $('#anaesconsoncallend').val('').prop('disabled', true);
                 }
             });
 
-            $('#cdconsoncallend').on('change', function() {
-                let startDate = $('#cdconsoncallstart').val();
+            $('#anaesconsoncallend').on('change', function() {
+                let startDate = $('#anaesconsoncallstart').val();
                 let endDate = $(this).val();
                 if (endDate < startDate) {
                     alert("End date cannot be before the start date!");
@@ -247,19 +241,19 @@ $(document).ready(function () {
             //Consulltant end
 
             //Firstcall start
-            $('#cdcardiooncallend').prop('disabled', true);
-            $('#cdcardiooncallstart').on('change', function() {
+            $('#anaessroncallend').prop('disabled', true);
+            $('#anaessroncallstart').on('change', function() {
                 let startDate = $(this).val();
                 if (startDate) {
-                    $('#cdcardiooncallend').prop('disabled', false);
-                    $('#cdcardiooncallend').attr('min', startDate);
+                    $('#anaessroncallend').prop('disabled', false);
+                    $('#anaessroncallend').attr('min', startDate);
                 } else {
-                    $('#cdcardiooncallend').val('').prop('disabled', true);
+                    $('#anaessroncallend').val('').prop('disabled', true);
                 }
             });
 
-            $('#cdcardiooncallend').on('change', function() {
-                let startDate = $('#cdcardiooncallstart').val();
+            $('#anaessroncallend').on('change', function() {
+                let startDate = $('#anaessroncallstart').val();
                 let endDate = $(this).val();
                 if (endDate < startDate) {
                     alert("End date cannot be before the start date!");
@@ -269,19 +263,19 @@ $(document).ready(function () {
             //Firstcall end
 
             //Secondcall start
-            $('#cdfirstoncallend').prop('disabled', true);
-            $('#cdfirstoncallstart').on('change', function() {
+            $('#anaessricuoncallend').prop('disabled', true);
+            $('#anaessricuoncallstart').on('change', function() {
                 let startDate = $(this).val();
                 if (startDate) {
-                    $('#cdfirstoncallend').prop('disabled', false);
-                    $('#cdfirstoncallend').attr('min', startDate);
+                    $('#anaessricuoncallend').prop('disabled', false);
+                    $('#anaessricuoncallend').attr('min', startDate);
                 } else {
-                    $('#cdfirstoncallend').val('').prop('disabled', true);
+                    $('#anaessricuoncallend').val('').prop('disabled', true);
                 }
             });
 
-            $('#cdfirstoncallend').on('change', function() {
-                let startDate = $('#cdfirstoncallstart').val();
+            $('#anaessricuoncallend').on('change', function() {
+                let startDate = $('#anaessricuoncallstart').val();
                 let endDate = $(this).val();
                 if (endDate < startDate) {
                     alert("End date cannot be before the start date!");
@@ -291,19 +285,19 @@ $(document).ready(function () {
             //Secondcall end
 
             //Thirdcall start
-            $('#cdseconcallend').prop('disabled', true);
-            $('#cdseconcallstart').on('change', function() {
+            $('#anaesmooncallend').prop('disabled', true);
+            $('#anaesmooncallstart').on('change', function() {
                 let startDate = $(this).val();
                 if (startDate) {
-                    $('#cdseconcallend').prop('disabled', false);
-                    $('#cdseconcallend').attr('min', startDate);
+                    $('#anaesmooncallend').prop('disabled', false);
+                    $('#anaesmooncallend').attr('min', startDate);
                 } else {
-                    $('#cdseconcallend').val('').prop('disabled', true);
+                    $('#anaesmooncallend').val('').prop('disabled', true);
                 }
             });
 
-            $('#cdseconcallend').on('change', function() {
-                let startDate = $('#cdseconcallstart').val();
+            $('#anaesmooncallend').on('change', function() {
+                let startDate = $('#anaesmooncallstart').val();
                 let endDate = $(this).val();
                 if (endDate < startDate) {
                     alert("End date cannot be before the start date!");
@@ -311,50 +305,6 @@ $(document).ready(function () {
                 }
             });
             //Thirdcall end
-
-            //ICUAM start
-            $('#cdmooncallend').prop('disabled', true);
-            $('#cdmooncallstart').on('change', function() {
-                let startDate = $(this).val();
-                if (startDate) {
-                    $('#cdmooncallend').prop('disabled', false);
-                    $('#cdmooncallend').attr('min', startDate);
-                } else {
-                    $('#cdmooncallend').val('').prop('disabled', true);
-                }
-            });
-
-            $('#cdmooncallend').on('change', function() {
-                let startDate = $('#cdmooncallstart').val();
-                let endDate = $(this).val();
-                if (endDate < startDate) {
-                    alert("End date cannot be before the start date!");
-                    $(this).val('');
-                }
-            });
-            //ICUAM end
-
-            //ICUPM start
-            $('#cdeponcallend').prop('disabled', true);
-            $('#cdeponcallstart').on('change', function() {
-                let startDate = $(this).val();
-                if (startDate) {
-                    $('#cdeponcallend').prop('disabled', false);
-                    $('#cdeponcallend').attr('min', startDate);
-                } else {
-                    $('#cdeponcallend').val('').prop('disabled', true);
-                }
-            });
-
-            $('#cdeponcallend').on('change', function() {
-                let startDate = $('#cdeponcallstart').val();
-                let endDate = $(this).val();
-                if (endDate < startDate) {
-                    alert("End date cannot be before the start date!");
-                    $(this).val('');
-                }
-            });
-            //ICUPM end
             //Checking Date CT End 
         }
     }); 

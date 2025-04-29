@@ -4,11 +4,11 @@
         <hr style="width: 50%; color: #333333; margin: auto; height: 3px; border: none; background-color: #333333;">
     </div>
     <div class="row mt-3 px-2">
-        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>Consultant :</b>&nbsp;&nbsp; {{ $roles['consultant'] }}</span>
-        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>1st Call &nbsp;&nbsp;&nbsp;:</b>&nbsp;&nbsp; {{ $roles['firstcall'] }}</span>
-        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>2nd Call :</b>&nbsp;&nbsp; {{ $roles['secondcall'] }}</span>
-        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>3rd Call &nbsp;:</b>&nbsp;&nbsp; {{ $roles['thirdcall'] }}</span>
-        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>ICU AM &nbsp;&nbsp;:</b>&nbsp;&nbsp; {{ $roles['icuam'] }}</span>
-        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>ICU PM &nbsp;&nbsp;&nbsp;:</b>&nbsp;&nbsp; {{ $roles['icupm'] }}</span>
+        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>Consultant :</b>&nbsp;&nbsp; {{ $rolesct['consultant'] }}</span>
+        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>1st Call &nbsp;&nbsp;&nbsp;:</b>&nbsp;&nbsp; {{ $rolesct['firstcall'] }}</span>
+        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>2nd Call :</b>&nbsp;&nbsp; {{ $rolesct['secondcall'] }}</span>
+        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>3rd Call &nbsp;:</b>&nbsp;&nbsp; {{ $rolesct['thirdcall'] }}</span>
+        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>ICU AM &nbsp;&nbsp;:</b>&nbsp;&nbsp; {{ $rolesct['icuam'] }}</span>
+        <span style="font-size: 1.3rem; color:#000000; font-weight: 600;"><b>ICU PM &nbsp;&nbsp;&nbsp;:</b>&nbsp;&nbsp; {{ $rolesct['icupm'] }}</span>
     </div>
 </div>

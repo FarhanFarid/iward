@@ -34,14 +34,62 @@ Route::group(['prefix' => 'oncallassignment'], function () {
         Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedCD'])->name('ocassignment.cd.get');
     });
 
+    Route::group(['prefix' => 'nurse-manager'], function () {
+        Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedNM'])->name('ocassignment.nm.save');
+        Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedNM'])->name('ocassignment.nm.update');
+        Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedNM'])->name('ocassignment.nm.get');
+    });
+
+    Route::group(['prefix' => 'anaesthesia'], function () {
+        Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedAnaes'])->name('ocassignment.anaes.save');
+        Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedAnaes'])->name('ocassignment.anaes.update');
+        Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedAnaes'])->name('ocassignment.anaes.get');
+    });
+
+    Route::group(['prefix' => 'pchc'], function () {
+        Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedPchc'])->name('ocassignment.pchc.save');
+        Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedPchc'])->name('ocassignment.pchc.update');
+        Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedPchc'])->name('ocassignment.pchc.get');
+    });
+
+    Route::group(['prefix' => 'other'], function () {
+        Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedOther'])->name('ocassignment.other.save');
+        Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedOther'])->name('ocassignment.other.update');
+        Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedOther'])->name('ocassignment.other.get');
+    });
+
+    Route::group(['prefix' => 'ert'], function () {
+        Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedErt'])->name('ocassignment.ert.save');
+        Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedErt'])->name('ocassignment.ert.update');
+        Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedErt'])->name('ocassignment.ert.get');
+    });
+
+    Route::group(['prefix' => 'sa'], function () {
+        Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedSa'])->name('ocassignment.sa.save');
+        Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedSa'])->name('ocassignment.sa.update');
+        Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedSa'])->name('ocassignment.sa.get');
+    });
+
 });
 
 
 //Display
 Route::group(['prefix' => 'warddisplay'], function () {
-    Route::group(['prefix' => 'b5z2'], function () {
-        Route::get('/', [WardDisplayController::class, 'indexb5z2'])->name('display.b5z2.index');
-    });
+    Route::get('/{ward}', [WardDisplayController::class, 'index'])->name('display.index');
 });
 
-Route::get('/refresh-cardiothoracic', [WardDisplayController::class, 'oncallCtSec'])->name('refresh.cardiothoracic');
+Route::group(['prefix' => 'refresh'], function () {
+     Route::get('/cardiology', [WardDisplayController::class, 'oncallCdSec'])->name('refresh.cardiology');
+     Route::get('/cardiothoracic', [WardDisplayController::class, 'oncallCtSec'])->name('refresh.cardiothoracic');
+     Route::get('/nursemanager', [WardDisplayController::class, 'oncallNmSec'])->name('refresh.nursemanager');
+     Route::get('/anaesthesia', [WardDisplayController::class, 'oncallAnaesSec'])->name('refresh.anaesthesia');
+     Route::get('/pchc', [WardDisplayController::class, 'oncallPchcSec'])->name('refresh.pchc');
+     Route::get('/other', [WardDisplayController::class, 'oncallOthSec'])->name('refresh.other');
+     Route::get('/ert', [WardDisplayController::class, 'oncallErtSec'])->name('refresh.ert');
+     Route::get('/sa', [WardDisplayController::class, 'oncallSaSec'])->name('refresh.sa');
+
+
+});
+
+
+

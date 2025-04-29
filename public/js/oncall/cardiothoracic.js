@@ -144,11 +144,11 @@ $(document).ready(function () {
             type: "POST",
             dataType: "json",
             data: data,
-            // beforeSend: function(){
-            //     $("#loading-overlay").show();
-            // },
+            beforeSend: function(){
+                $("#loading-overlay").show();
+            },
             success: function(data) {
-
+                $("#loading-overlay").hide();
                 Swal.fire({
                     title: "Success!",
                     text: "Successfully Saved!",
@@ -159,8 +159,9 @@ $(document).ready(function () {
                 });
 
                 setTimeout(function() {
-                    location.reload();
-                }, 3000);
+                    calendar.refetchEvents();
+                    $('#assignct-modal').modal('hide');
+                }, 1000);
             },
             error: function(xhr, status, error) {
                 toastr.error('Error saving reaction: ' + error, {timeOut: 5000});
@@ -176,20 +177,16 @@ $(document).ready(function () {
         var data        = processSerialize(formData);
         var url         = config.routes.oncallassignment.cardiothoracic.update;
 
-        console.log(data);
-        console.log(url);
-
-
         $.ajax({
             url: url,
             type: "POST",
             dataType: "json",
             data: data,
-            // beforeSend: function(){
-            //     $("#loading-overlay").show();
-            // },
+            beforeSend: function(){
+                $("#loading-overlay").show();
+            },
             success: function(data) {
-
+                $("#loading-overlay").hide();
                 Swal.fire({
                     title: "Success!",
                     text: "Successfully Updated!",
@@ -200,8 +197,9 @@ $(document).ready(function () {
                 });
 
                 setTimeout(function() {
-                    location.reload();
-                }, 3000);
+                    calendar.refetchEvents();
+                    $('#updatect-modal').modal('hide');
+                }, 1000);
             },
             error: function(xhr, status, error) {
                 toastr.error('Error saving reaction: ' + error, {timeOut: 5000});

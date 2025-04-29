@@ -7,12 +7,12 @@
         <div class="carousel-item active">
             @include('display.general.oncall')
         </div>
-        {{-- <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+        <div class="carousel-item">
+            @include('display.sections.patients')
         </div>
         <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-        </div> --}}
+            @include('display.sections.patientstwo')
+        </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
