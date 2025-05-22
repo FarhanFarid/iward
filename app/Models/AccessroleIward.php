@@ -11,7 +11,7 @@ class AccessroleIward extends Model
     use HasFactory;
 
     protected $connection = 'sso';
-    protected $table = 'accessrole_ijnwhd';
+    protected $table = 'accessrole_ijnward';
 
     public function role()
     {

@@ -10,5 +10,5 @@ class Role extends Model
     use HasFactory;
 
     protected $connection = 'sso';
-    protected $table = 'role_ijnwhd';
+    protected $table = 'role_ijnward';
 }
