@@ -24,7 +24,7 @@
                                             <div class="col-md-12">
                                                 <label for="ertwardlocation" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Ward</label>
                                                 <div class="border rounded p-2">
-                                                    <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-placeholder="Select an option" id="ertwardlocation" name="ertwardlocation"> 
+                                                    <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-placeholder="Select an option" id="ertwardlocation" name="ertwardlocation" required> 
                                                         <option></option>
                                                         @foreach ($ward as $loc)
                                                             <option value="{{ $loc->location_code }}">

@@ -5,14 +5,14 @@
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            @include('display.general.oncall')
+            @include('display.general.updates.oncallone')
         </div>
-        <div class="carousel-item">
+        {{-- <div class="carousel-item">
             @include('display.sections.patients')
         </div>
         <div class="carousel-item">
             @include('display.sections.patientstwo')
-        </div>
+        </div> --}}
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
