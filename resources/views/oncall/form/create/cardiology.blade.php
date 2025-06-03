@@ -156,7 +156,7 @@
                                                 <div class="d-flex border">
                                                     <div class="col-md-6 p-2">
                                                         <label for="cdepcall" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
-                                                        <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assigncd-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="ctthirdcall" name="cdepcall">
+                                                        <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assigncd-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="cdepcall" name="cdepcall">
                                                             <option></option>
                                                             @foreach ($sso as $staffs)
                                                                 <option value="{{ $staffs->id }}">
