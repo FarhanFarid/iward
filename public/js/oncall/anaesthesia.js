@@ -176,7 +176,6 @@ $(document).ready(function () {
                         toastr.error('Error saving reaction: ' + error, {timeOut: 5000});
                     }
                 });
-
             });
 
             $('.update-ocanaes').on('click', async function() {

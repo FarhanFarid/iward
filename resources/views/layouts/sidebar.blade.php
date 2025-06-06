@@ -34,6 +34,12 @@
                                 </span>
                                 <span class="menu-title">On Call Assignment</span>
                             </a>
+                            <a class="menu-link {{ request()->routeIs('patmanagement.index') ? 'active' : '' }}" href="{{ route('patmanagement.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Patient Management</span>
+                            </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->
