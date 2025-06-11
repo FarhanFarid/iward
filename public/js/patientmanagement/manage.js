@@ -128,7 +128,6 @@ $(document).ready(function () {
         var maxLength = 50;
         var currentLength = $(this).val().length;
     
-        // Enforce max length (in case someone pastes over the limit)
         if (currentLength > maxLength) {
             $(this).val($(this).val().substring(0, maxLength));
             currentLength = maxLength;

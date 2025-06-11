@@ -19,19 +19,19 @@
                 <div class="d-grid">
                     <ul class="nav nav-tabs flex-nowrap text-nowrap">
                         <li class="nav-item" style="margin-right: 10px;">
-                            <a class="nav-link active btn btn-light-success btn-active-success btn-color-light-success btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#cardiothoracic">CARDIOTHORACIC</a>
+                            <a class="nav-link active btn btn-light-primary btn-active-primary btn-color-light-primary btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#cardiothoracic">CARDIOTHORACIC</a>
                         </li>
                         <li class="nav-item" style="margin-right: 10px;">
-                            <a class="nav-link btn btn-light-success btn-active-success btn-color-light-success btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#cardiology">CARDIOLOGY</a>
+                            <a class="nav-link btn btn-light-primary btn-active-primary btn-color-light-primary btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#cardiology">CARDIOLOGY</a>
+                        </li>
+                        <li class="nav-item" style="margin-right: 10px;">
+                            <a class="nav-link btn btn-light-primary btn-active-primary btn-color-light-primary btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#anaes">ANAESTHESIA</a>
+                        </li>
+                        <li class="nav-item" style="margin-right: 10px;">
+                            <a class="nav-link btn btn-light-primary btn-active-primary btn-color-light-primary btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#pchc">PCHC</a>
                         </li>
                         <li class="nav-item" style="margin-right: 10px;">
                             <a class="nav-link btn btn-light-success btn-active-success btn-color-light-success btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#nursemanager">NURSE MANAGER</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 10px;">
-                            <a class="nav-link btn btn-light-success btn-active-success btn-color-light-success btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#anaes">ANAESTHESIA</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 10px;">
-                            <a class="nav-link btn btn-light-success btn-active-success btn-color-light-success btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#pchc">PCHC</a>
                         </li>
                         <li class="nav-item" style="margin-right: 10px;">
                             <a class="nav-link btn btn-light-success btn-active-success btn-color-light-success btn-active-color-light rounded-bottom-0" data-bs-toggle="tab" href="#other">OTHERS</a>

@@ -43,7 +43,7 @@
                                             </div>
                                             <div class="row mb-2">
                                                 <div class="col-md-8">
-                                                    <input class="form-control form-control-sm" type="text" name="nbm_remark" id="nbm_remark">
+                                                    <textarea class="form-control form-control-sm" name="nbm_remark" id="nbm_remark" maxlength="50" rows="2"></textarea>
                                                     <small id="nbm_remark_count" class="text-muted">0 / 50</small>
                                                 </div>
                                             </div>
@@ -53,7 +53,7 @@
                                         <div class="col-md-12 px-5">
                                             <div class="row mb-1">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="fw-bold">Fasting</span>
+                                                    <span class="fw-bold">Remarks</span>
                                                     <label class="form-check form-switch form-check-custom form-check-solid m-0">
                                                         <input class="form-check-input" type="checkbox" name="fasting" id="fasting" value="1"/>
                                                     </label>
@@ -61,7 +61,7 @@
                                             </div>
                                             <div class="row mb-2">
                                                 <div class="col-md-8">
-                                                    <input class="form-control form-control-sm" type="text" name="fasting_remark" id="fasting_remark">
+                                                    <textarea class="form-control form-control-sm" name="fasting_remark" id="fasting_remark" maxlength="50" rows="2"></textarea>
                                                     <small id="fasting_remark_count" class="text-muted">0 / 50</small>
                                                 </div>
                                             </div>
