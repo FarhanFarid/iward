@@ -28,9 +28,9 @@
                                                         <label for="cdconsultant" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#updatecd-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="updatecdstaff" name="updatecdstaff">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

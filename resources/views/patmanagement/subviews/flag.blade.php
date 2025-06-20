@@ -77,22 +77,22 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-8">
-                                                    <input class="form-control form-control-sm" type="text" name="procedure_remark" id="procedure_remark">
-                                                    <small id="procedure_remark_count" class="text-muted">0 / 50</small>
+                                            <div id="procedure_remark_wrapper" style="display: none;">
+                                                <!-- Initial Input Group -->
+                                                <div class="row mb-2 procedure_remark_group align-items-center">
+                                                    <div class="col-md-8 d-flex align-items-center gap-2 flex-wrap">
+                                                        <input class="form-control form-control-sm procedure_remark_input" type="text" name="procedure_remark[0]" maxlength="50" placeholder="Enter procedure">
+                                                        <div class="form-check form-switch d-flex align-items-center">
+                                                            <input class="form-check-input me-1" type="checkbox" name="financial_switch[0]" value="1">
+                                                            <label class="form-check-label ms-1">Financial Clearance</label>
+                                                        </div>
+                                                        <button type="button" class="btn btn-light btn-sm add-procedure-btn" title="Add">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                        <small class="text-muted count-label ms-2">0 / 50</small>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-12 px-5">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <span class="fw-bold">Financial Clearance</span>
-                                                <label class="form-check form-switch form-check-custom form-check-solid m-0">
-                                                    <input class="form-check-input" type="checkbox" name="financial" id="financial" value="1"/>
-                                                </label>
-                                            </div>
+                                            </div>                                    
                                         </div>
                                     </div>
                                     <div class="row mb-3">

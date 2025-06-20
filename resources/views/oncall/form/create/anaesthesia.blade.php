@@ -28,9 +28,9 @@
                                                         <label for="anaescons" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignanaes-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="anaescons" name="anaescons">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -54,9 +54,9 @@
                                                         <label for="anaessr" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignanaes-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="anaessr" name="anaessr">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -80,9 +80,9 @@
                                                         <label for="anaessricu" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignanaes-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="anaessricu" name="anaessricu">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -106,9 +106,9 @@
                                                         <label for="anaesmo" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignanaes-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="anaesmo" name="anaesmo">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

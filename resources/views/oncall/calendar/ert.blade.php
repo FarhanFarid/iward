@@ -36,6 +36,6 @@
     </div>
 </div>
 
-@push('script')
+{{-- @push('script')
     <script src="{{ asset('js/oncall/ert.js') }}"></script>
-@endpush
+@endpush --}}

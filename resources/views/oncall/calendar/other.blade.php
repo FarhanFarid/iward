@@ -25,7 +25,3 @@
         </div>
     </div>
 </div>
-
-@push('script')
-    <script src="{{ asset('js/oncall/other.js') }}"></script>
-@endpush

@@ -35,7 +35,3 @@
         </div>
     </div>
 </div>
-
-@push('script')
-    <script src="{{ asset('js/oncall/staffassignment.js') }}"></script>
-@endpush

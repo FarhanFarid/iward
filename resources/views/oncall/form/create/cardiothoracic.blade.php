@@ -28,9 +28,9 @@
                                                         <label for="ctconsultant" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignct-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="ctconsultant" name="ctconsultant">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -54,9 +54,9 @@
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignct-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="ctfirstcall" name="ctfirstcall">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -80,9 +80,9 @@
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignct-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="ctsecondcall" name="ctsecondcall">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -106,9 +106,9 @@
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignct-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="ctthirdcall" name="ctthirdcall">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -132,9 +132,9 @@
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignct-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="cticuam" name="cticuam">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -158,9 +158,9 @@
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Name:</label>
                                                         <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignct-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="cticupm" name="cticupm">
                                                             <option></option>
-                                                            @foreach ($sso as $staffs)
-                                                                <option value="{{ $staffs->id }}">
-                                                                    {{ $staffs->name }}
+                                                            @foreach ($careprov as $staffs)
+                                                                <option value="{{ $staffs->cpid }}">
+                                                                    {{ $staffs->cpName }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

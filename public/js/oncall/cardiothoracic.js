@@ -4,7 +4,7 @@ $(document).ready(function () {
     var calendar;
     var calendarEl = document.getElementById('cardiothoracic-calendar');
 
-    function initCalendar(selectedDate) {
+    function initCardiothoracicCalendar(selectedDate) {
         if (calendar) {
             calendar.destroy();
         }
@@ -73,7 +73,7 @@ $(document).ready(function () {
                                     allDay: true,
                                     extendedProps: { 
                                         positionType: item.position_type,
-                                        sso: item.user_sso_id,
+                                        sso: item.user_cp_id,
                                         id: item.id,
                                         oncallDate: item.oncall_date
                                     }
@@ -117,12 +117,12 @@ $(document).ready(function () {
     // Set default date to today on page load
     let today = moment().format('YYYY-MM-DD');
     $("#ctcalendardate").val(today);
-    initCalendar(today); // Initialize the calendar with today's date
+    initCardiothoracicCalendar(today); // Initialize the calendar with today's date
 
     // Update calendar when date changes
     $("#ctcalendardate").on("change", function () {
         let selectedDate = $(this).val();
-        initCalendar(selectedDate); // Reinitialize the calendar with the selected date
+        initCardiothoracicCalendar(selectedDate); // Reinitialize the calendar with the selected date
     });
 
 

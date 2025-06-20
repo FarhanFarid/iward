@@ -145,5 +145,93 @@
                     }       
                 }
             };
+
+
+        const tabScripts = {
+            cardiothoracic: {
+                loaded: false,
+                src: '{{ asset("js/oncall/cardiothoracic.js") }}',
+                init: 'initCardiothoracicTab'
+            },
+            cardiology: {
+                loaded: false,
+                src: '{{ asset("js/oncall/cardiology.js") }}',
+                init: 'initCardiologyTab'
+            },
+            anaes: {
+                loaded: false,
+                src: '{{ asset("js/oncall/anaesthesia.js") }}',
+                init: 'initAnaesTab'
+            },
+            nursemanager: {
+                loaded: false,
+                src: '{{ asset("js/oncall/nursemanager.js") }}',
+                init: 'initNursemanagerTab'
+            },
+            pchc: {
+                loaded: false,
+                src: '{{ asset("js/oncall/pchc.js") }}',
+                init: 'initPchcTab'
+            },
+            other: {
+                loaded: false,
+                src: '{{ asset("js/oncall/other.js") }}',
+                init: 'initOtherTab'
+            },
+            ert: {
+                loaded: false,
+                src: '{{ asset("js/oncall/ert.js") }}',
+                init: 'initErtTab'
+            },
+            sa: {
+                loaded: false,
+                src: '{{ asset("js/oncall/staffassignment.js") }}',
+                init: 'initSaTab'
+            }
+        };
+
+
+        function loadScript(tabId) {
+            const tab = tabScripts[tabId];
+            if (!tab) {
+                console.warn('No script config for tab:', tabId);
+                return;
+            }
+            if (tab.loaded) {
+                console.log(`Script for tab "${tabId}" already loaded.`);
+                if (typeof window[tab.init] === 'function') {
+                    window[tab.init]();
+                }
+                return;
+            }
+
+            console.log(`Loading script for tab "${tabId}" from:`, tab.src);
+            const script = document.createElement('script');
+            script.src = tab.src;
+            script.onload = () => {
+                tab.loaded = true;
+                console.log(`Script loaded: ${tab.src}`);
+                if (typeof window[tab.init] === 'function') {
+                    window[tab.init]();
+                } else {
+                    console.error(`Init function ${tab.init} not found on window object.`);
+                }
+            };
+            script.onerror = () => {
+                console.error(`Failed to load script for tab "${tabId}"`);
+            };
+            document.body.appendChild(script);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadScript('cardiothoracic'); // default tab
+        });
+
+        document.querySelectorAll('[data-bs-toggle="tab"]').forEach(el => {
+            el.addEventListener('shown.bs.tab', function (e) {
+                const tabId = e.target.getAttribute('href').replace('#', '');
+                loadScript(tabId);
+            });
+        });
     </script>
 @endpush

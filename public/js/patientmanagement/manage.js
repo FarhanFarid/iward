@@ -91,12 +91,42 @@ $(document).ready(function () {
     });
 
     $('#procedure').on('change', function () {
-        if ($('#procedure').is(':checked')) {
-            $('#procedure_remark').closest('.row').show();
+        if ($(this).is(':checked')) {
+            $('#procedure_remark_wrapper').show();
+    
+            // If no existing repeater input, add one default input
+            if ($('#procedure_remark_wrapper .procedure_remark_group').length === 0) {
+                $('#procedure_remark_wrapper').append(generateProcedureInput('', false));
+            }
+    
         } else {
-            $('#procedure_remark').closest('.row').hide();
+            $('#procedure_remark_wrapper').hide().empty();
         }
     });
+
+    function generateProcedureInput(value = '', isFinancial = false) {
+        return `
+            <div class="row mb-2 procedure_remark_group align-items-center">
+                <div class="col-md-8 d-flex align-items-center gap-2 flex-wrap">
+                    <input class="form-control form-control-sm procedure_remark_input" 
+                           type="text" name="procedure_remark[]" 
+                           maxlength="50" value="${value}" placeholder="Enter procedure">
+    
+                    <div class="form-check form-switch d-flex align-items-center">
+                        <input class="form-check-input me-1" type="checkbox" 
+                               name="financial_switch[]" ${isFinancial ? 'checked' : ''}>
+                        <label class="form-check-label ms-1">Financial Clearance</label>
+                    </div>
+    
+                    <button type="button" class="btn btn-light btn-sm add-procedure-btn" title="Add">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <small class="text-muted count-label ms-2">0 / 50</small>
+
+                </div>
+            </div>
+        `;
+    }
 
     $('#procedure_remark').on('input', function () {
         var maxLength = 50;
@@ -141,9 +171,7 @@ $(document).ready(function () {
     
         const response = data.response;
     
-        console.log(response);
-
-        // Populate checkboxes
+        // Set all base flags
         const checkboxFields = [
             'nbm', 'fasting', 'procedure', 'financial', 'fall_risk',
             'heart_failure', 'respi', 'nephro', 'neuro',
@@ -153,20 +181,80 @@ $(document).ready(function () {
         checkboxFields.forEach(field => {
             const value = response[field];
             const checkbox = $('#' + field.replace(/_/g, ''));
-    
-            if (checkbox.length) {
-                checkbox.prop('checked', value === 1);
-            }
+            if (checkbox.length) checkbox.prop('checked', value === 1);
         });
     
         $('#nbm_remark').val(response.nbm_remark || '');
         $('#fasting_remark').val(response.fasting_remark || '');
-        $('#procedure_remark').val(response.procedure_remark || '');
-
+    
+        // Reset and repopulate procedure_remark_wrapper
+        $('#procedure_remark_wrapper').empty();
+    
+        if (response.procedure_list && response.procedure_list.length > 0) {
+            response.procedure_list.forEach((proc, index) => {
+                const remark = proc.procedure ?? '';
+                const financial = proc.financial == 1 ? 'checked' : '';
+    
+                const row = `
+                    <div class="row mb-2 procedure_remark_group align-items-center">
+                        <div class="col-md-8 d-flex align-items-center gap-2 flex-wrap">
+                            <input class="form-control form-control-sm procedure_remark_input" type="text" name="procedure_remark[]" maxlength="50" value="${remark}" placeholder="Enter procedure">
+    
+                            <div class="form-check form-switch d-flex align-items-center">
+                                <input class="form-check-input me-1" type="checkbox" name="financial_switch[${index}]" ${financial}>
+                                <label class="form-check-label ms-1">Financial Clearance</label>
+                            </div>
+    
+                            <button type="button" class="btn btn-light btn-sm ${index === 0 ? 'add-procedure-btn' : 'remove-procedure-btn'}" title="${index === 0 ? 'Add' : 'Remove'}">
+                                <i class="fas fa-${index === 0 ? 'plus' : 'minus'}"></i>
+                            </button>
+                            <small class="text-muted count-label ms-2">${remark.length} / 50</small>
+                        </div>
+                    </div>
+                `;
+    
+                $('#procedure_remark_wrapper').append(row);
+            });
+        }
+    
+        // Rebind add/remove events if needed
+        bindProcedureRepeaterEvents();
+    
+        // Trigger dependent fields
         $('#nbm').trigger('change');
         $('#fasting').trigger('change');
         $('#procedure').trigger('change');
     }
+
+    function bindProcedureRepeaterEvents() {
+        $('#procedure_remark_wrapper').off('click', '.add-procedure-btn').on('click', '.add-procedure-btn', function () {
+            const index = $('#procedure_remark_wrapper .procedure_remark_group').length;
+    
+            const newRow = `
+                <div class="row mb-2 procedure_remark_group align-items-center">
+                    <div class="col-md-8 d-flex align-items-center gap-2 flex-wrap">
+                        <input class="form-control form-control-sm procedure_remark_input" type="text" name="procedure_remark[]" maxlength="50" placeholder="Enter procedure">
+                        
+                        <div class="form-check form-switch d-flex align-items-center">
+                            <input class="form-check-input me-1" type="checkbox" name="financial_switch[${index}]">
+                            <label class="form-check-label ms-1">Financial Clearance</label>
+                        </div>
+    
+                        <button type="button" class="btn btn-light btn-sm remove-procedure-btn" title="Remove">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <small class="text-muted count-label ms-2">0 / 50</small>
+                    </div>
+                </div>
+            `;
+            $('#procedure_remark_wrapper').append(newRow);
+        });
+    
+        $('#procedure_remark_wrapper').off('click', '.remove-procedure-btn').on('click', '.remove-procedure-btn', function () {
+            $(this).closest('.procedure_remark_group').remove();
+        });
+    }
+    
 
     function resetPatientFlagForm() {
         // Uncheck all checkboxes
@@ -183,20 +271,21 @@ $(document).ready(function () {
         // Clear input fields
         $('#nbm_remark').val('');
         $('#fasting_remark').val('');
-        $('#procedure_remark').val('');
     
-        // Hide dependent input fields if they're controlled by switches
+        // Clear all dynamic procedure remarks
+        $('#procedure_remark_wrapper').empty();
+    
+        // Trigger change for dependent visibility
         $('#nbm').trigger('change');
         $('#fasting').trigger('change');
         $('#procedure').trigger('change');
     }
+    
 
     $('#patient-table tbody').on('click', '.add-flag-btn', function () {
         var mrn     = $(this).data('mrn');
         var name    = $(this).data('name');
         var url     = config.routes.patient.getPatientFlag;
-
-        console.log(mrn);
 
         resetPatientFlagForm();
 
@@ -229,7 +318,7 @@ $(document).ready(function () {
 
         const isNbmChecked = $('#nbm').is(':checked');
         const isFastingChecked = $('#fasting').is(':checked');
-        const isProcedureChecked = $('#procedure').is(':checked');
+        // const isProcedureChecked = $('#procedure').is(':checked');
 
         const nbmRemark = $('#nbm_remark').val();
         const fastingRemark = $('#fasting_remark').val();
@@ -243,10 +332,12 @@ $(document).ready(function () {
             toastr.error('Please provide Fasting date.', { timeOut: 3000 });
             return;
         }
-        if (isProcedureChecked && procedureRemark.trim() === '') {
-            toastr.error('Please provide Procedure remark.', { timeOut: 3000 });
-            return;
-        }
+        // if (isProcedureChecked && procedureRemark.trim() === '') {
+        //     toastr.error('Please provide Procedure remark.', { timeOut: 3000 });
+        //     return;
+        // }
+
+        console.log(data);
         
         $.ajax({
             url: url,
@@ -279,5 +370,58 @@ $(document).ready(function () {
             }
         });
     });
-    
+
+    // Add new row
+    let procedureIndex = 1;
+    $('.add-procedure-btn').on('click', function () {
+        const newRow = $(`
+            <div class="row mb-2 procedure_remark_group align-items-center">
+                <div class="col-md-8 d-flex align-items-center gap-2 flex-wrap">
+                    <input class="form-control form-control-sm procedure_remark_input" 
+                        type="text" name="procedure_remark[${procedureIndex}]" maxlength="50" placeholder="Enter procedure">
+
+                    <div class="form-check form-switch d-flex align-items-center">
+                        <input class="form-check-input me-1" type="checkbox" 
+                            name="financial_switch[${procedureIndex}]">
+                        <label class="form-check-label ms-1">Financial Clearance</label>
+                    </div>
+
+                    <button type="button" class="btn btn-light btn-sm remove-procedure-btn" title="Remove">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <small class="text-muted count-label ms-2">0 / 50</small>
+
+                </div>
+            </div>
+        `);
+
+        $('#procedure_remark_wrapper').append(newRow);
+        procedureIndex++;
+    });
+
+    // Remove row
+    $(document).on('click', '.remove-procedure-btn', function () {
+        $(this).closest('.procedure_remark_group').remove();
+    });
+
+    // Character counter
+    $(document).on('input', '.procedure_remark_input', function () {
+        const count = $(this).val().length;
+        $(this).closest('.procedure_remark_group').find('.count-label').text(`${count} / 50`);
+    });
+
+    toggleProcedureRemarkWrapper();
+
+    $('#procedure').on('change', function () {
+        toggleProcedureRemarkWrapper();
+    });
+
+    function toggleProcedureRemarkWrapper() {
+        if ($('#procedure').is(':checked')) {
+            $('#procedure_remark_wrapper').slideDown();
+        } else {
+            $('#procedure_remark_wrapper').slideUp();
+        }
+    }
+
 });

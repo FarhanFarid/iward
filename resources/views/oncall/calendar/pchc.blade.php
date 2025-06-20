@@ -25,7 +25,3 @@
         </div>
     </div>
 </div>
-
-@push('script')
-    <script src="{{ asset('js/oncall/pchc.js') }}"></script>
-@endpush

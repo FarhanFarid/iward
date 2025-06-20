@@ -1,359 +1,341 @@
-$(document).ready(function () {
+function initSaTab() {
+    "use strict";
 
-    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
-        let targetTab = $(e.target).attr("href"); // Get the target tab ID
-        
-        if (targetTab === "#sa") {
-            setTimeout(function () {
-                let selectedDate = $("#sacalendardate").val();
-                initCalendar(selectedDate); // Reinitialize the calendar
-            }, 100); // Small delay to ensure the tab transition is complete
+    let calendar;
+    let calendarEl = document.getElementById('sa-calendar');
 
-            "use strict";
+    function renderCalendar(selectedDate) {
+        if (calendar) calendar.destroy();
 
-            var calendar;
-            var calendarEl = document.getElementById('sa-calendar');
-        
-            function initCalendar(selectedDate) {
-                if (calendar) {
-                    calendar.destroy();
-                }
-        
-                calendar = new FullCalendar.Calendar(calendarEl, {
-                    headerToolbar: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: ''
-                    },
-                    initialDate: selectedDate || moment().format('YYYY-MM-DD'),
-                    navLinks: true,
-                    selectable: true,
-                    eventStartEditable: false,
-                    droppable: false,
-                    selectMirror: true,
-                    editable: true,
-                    events: function (fetchInfo, successCallback, failureCallback) {
-                        const selectedLocation = $('#salocation').val();
-        
-                        if (!selectedLocation) {
-                            successCallback([]);
-                            return;
-                        }
-        
-                        $.ajax({
-                            url: config.routes.oncallassignment.sa.getlist,
-                            method: 'GET',
-                            data: {
-                                salocation: selectedLocation
-                            },
-                            success: function (data) {
-                                if (data.status === 'success') {
-                                    const positionHierarchy = {
-                                        "tlam": 0, "tlpm": 1, "tloncall": 2,
-                                        "iam": 3, "ipm": 4, "ioncall": 5,
-                                        "medam": 6, "medpm": 7, "medoncall": 8,
-                                        "runam": 9, "runpm": 10, "runoncall": 11,
-                                        "obsam": 9, "obspm": 10, "obsoncall": 11
-                                    };
-        
-                                    const positionLabels = {
-                                        "tlam": "TL AM", "tlpm": "TL PM", "tloncall": "TL Oncall",
-                                        "iam": "INC AM", "ipm": "INC PM", "ioncall": "INC Oncall",
-                                        "medam": "MED AM", "medpm": "MED PM", "medoncall": "MED Oncall",
-                                        "runam": "RUN AM", "runpm": "RUN PM", "runoncall": "RUN Oncall",
-                                        "obsam": "OBS AM", "obspm": "OBS PM", "obsoncall": "OBS Oncall"
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: ''
+            },
+            initialDate: selectedDate || moment().format('YYYY-MM-DD'),
+            navLinks: true,
+            selectable: true,
+            editable: true,
+            eventStartEditable: false,
+            selectMirror: true,
+            droppable: false,
+            events: function (fetchInfo, successCallback, failureCallback) {
+                const selectedLocation = $('#salocation').val();
+                if (!selectedLocation) return successCallback([]);
 
-                                    };
-        
-                                    let events = data.response
-                                        .sort((a, b) => (positionHierarchy[a.position_type] ?? 99) - (positionHierarchy[b.position_type] ?? 99))
-                                        .map(item => {
-                                            let color;
-                                            switch (item.position_type) {
-                                                case 'tlam':
-                                                case 'tlpm':
-                                                case 'tloncall':
-                                                    color = '#87CEFA'; break;
-                                                case 'iam':
-                                                case 'ipm':
-                                                case 'ioncall':
-                                                    color = '#7FFFD4'; break;
-                                                case 'medam':
-                                                case 'medpm':
-                                                case 'medoncall':
-                                                    color = '#AFEEEE'; break;
-                                                case 'runam':
-                                                case 'runpm':
-                                                case 'runoncall':
-                                                    color = '#40E0D0'; break;
-                                                case 'obsam':
-                                                case 'obspm':
-                                                case 'obsoncall':
-                                                    color = '#F5FFFA'; break;
-                                                default:
-                                                    color = '#F0E68C';
-                                            }
-        
-                                            return {
-                                                title: `${positionLabels[item.position_type]}: ${item.name}`,
-                                                start: item.oncall_date,
-                                                backgroundColor: color,
-                                                borderColor: color,
-                                                textColor: "black",
-                                                allDay: true,
-                                                extendedProps: {
-                                                    positionType: item.position_type,
-                                                    sso: item.user_sso_id,
-                                                    id: item.id,
-                                                    oncallDate: item.oncall_date
-                                                }
-                                            };
-                                        });
-                                    successCallback(events);
-                                } else {
-                                    failureCallback(new Error('Failed to fetch events'));
+                $.ajax({
+                    url: config.routes.oncallassignment.sa.getlist,
+                    method: 'GET',
+                    data: { salocation: selectedLocation },
+                    success: function (data) {
+                        if (data.status !== 'success') return failureCallback();
+
+                        const positionHierarchy = {
+                            "tlam": 0, "tlpm": 1, "tloncall": 2,
+                            "iam1": 3, "ipm1": 4, "ioncall1": 5,
+                            "iam2": 6, "ipm2": 7, "ioncall2": 8,
+                            "iam3": 9, "ipm3": 10, "ioncall3": 11,
+                            "iam4": 12, "ipm4": 13, "ioncall4": 14,
+                            "iam5": 15, "ipm5": 16, "ioncall5": 17,
+                            "iam6": 18, "ipm6": 19, "ioncall6": 20,
+                            "medam1": 21, "medpm1": 22, "medoncall1": 23,
+                            "medam2": 24, "medpm2": 25, "medoncall2": 26,
+                            "medam3": 27, "medpm3": 28, "medoncall3": 29,
+                            "medam4": 48, "medpm4": 49, "medoncall4": 50,
+                            "runam1": 30, "runpm1": 31, "runoncall1": 32,
+                            "runam2": 33, "runpm2": 34, "runoncall2": 35,
+                            "runam3": 36, "runpm3": 37, "runoncall3": 38,
+                            "runam4": 39, "runpm4": 40, "runoncall4": 41,
+                            "runam5": 42, "runpm5": 43, "runoncall5": 44,
+                            "runam6": 45, "runpm6": 46, "runoncall6": 47,
+                        };
+
+                        const positionLabels = {
+                            "tlam": "TL AM", "tlpm": "TL PM", "tloncall": "TL Oncall",
+                            "iam1": "INC AM 1", "ipm1": "INC PM 1", "ioncall1": "INC Oncall 1",
+                            "iam2": "INC AM 2", "ipm2": "INC PM 2", "ioncall2": "INC Oncall 2",
+                            "iam3": "INC AM 3", "ipm3": "INC PM 3", "ioncall3": "INC Oncall 3",
+                            "iam4": "INC AM 4", "ipm4": "INC PM 4", "ioncall4": "INC Oncall 4",
+                            "iam5": "INC AM 5", "ipm5": "INC PM 5", "ioncall5": "INC Oncall 5",
+                            "iam6": "INC AM 6", "ipm6": "INC PM 6", "ioncall6": "INC Oncall 6",
+                            "medam1": "MED AM 1", "medpm1": "MED PM 1", "medoncall1": "MED Oncall 1",
+                            "medam2": "MED AM 2", "medpm2": "MED PM 2", "medoncall2": "MED Oncall 2",
+                            "medam3": "MED AM 3", "medpm3": "MED PM 3", "medoncall3": "MED Oncall 3",
+                            "medam4": "MED AM 4", "medpm4": "MED PM 4", "medoncall4": "MED Oncall 4",
+                            "runam1": "RUN AM 1", "runpm1": "RUN PM 1", "runoncall1": "RUN Oncall 1",
+                            "runam2": "RUN AM 2", "runpm2": "RUN PM 2", "runoncall2": "RUN Oncall 2",
+                            "runam3": "RUN AM 3", "runpm3": "RUN PM 3", "runoncall3": "RUN Oncall 3",
+                            "runam4": "RUN AM 4", "runpm4": "RUN PM 4", "runoncall4": "RUN Oncall 4",
+                            "runam5": "RUN AM 5", "runpm5": "RUN PM 5", "runoncall5": "RUN Oncall 5",
+                            "runam6": "RUN AM 6", "runpm6": "RUN PM 6", "runoncall6": "RUN Oncall 6",
+                        };
+
+                        const events = data.response
+                            .sort((a, b) => (positionHierarchy[a.position_type] ?? 99) - (positionHierarchy[b.position_type] ?? 99))
+                            .map(item => {
+                                let color;
+                                switch (item.position_type) {
+                                    case 'tlam': case 'tlpm': case 'tloncall': color = '#87CEFA'; break;
+                                    case 'iam1': case 'iam2': case 'iam3': case 'iam4': case 'iam5': case 'iam6':
+                                    case 'ipm1': case 'ipm2': case 'ipm3': case 'ipm4': case 'ipm5': case 'ipm6': 
+                                    case 'ioncall1': case 'ioncall2': case 'ioncall3': case 'ioncall4': case 'ioncall5': case 'ioncall6':  
+                                    color = '#7FFFD4';
+                                    break;
+                                    case 'medam1': case 'medam2': case 'medam3': case 'medam4': 
+                                    case 'medpm1': case 'medpm2': case 'medpm3': case 'medpm4': 
+                                    case 'medoncall1': case 'medoncall2': case 'medoncall3': case 'medoncall4': 
+                                    color = '#AFEEEE';
+                                    break;
+                                    case 'runam1': case 'runam2': case 'runam3': case 'runam4': case 'runam5': case 'runam6': 
+                                    case 'runpm1': case 'runpm2': case 'runpm3': case 'runpm4': case 'runpm5': case 'runpm6': 
+                                    case 'runoncall1': case 'runoncall2': case 'runoncall3': case 'runoncall4': case 'runoncall5': case 'runoncall6': 
+                                    color = '#40E0D0'; 
+                                    break;
+                                    default: color = '#F0E68C';
                                 }
-                            },
-                            error: function (err) {
-                                console.error("Error fetching data:", err);
-                                failureCallback(err);
-                            }
-                        });
+
+                                return {
+                                    title: `${positionLabels[item.position_type]}: ${item.name}`,
+                                    start: item.oncall_date,
+                                    backgroundColor: color,
+                                    borderColor: color,
+                                    textColor: "black",
+                                    allDay: true,
+                                    extendedProps: {
+                                        positionType: item.position_type,
+                                        sso: item.user_cp_id,
+                                        id: item.id,
+                                        oncallDate: item.oncall_date
+                                    }
+                                };
+                            });
+
+                        successCallback(events);
                     },
-        
-                    eventClick: function (info) {
-                        let id = info.event.extendedProps.id;
-                        let date = info.event.extendedProps.oncallDate;
-                        let sso = info.event.extendedProps.sso;
-        
-                        $("#ocsaid").val(id);
-                        $("#updatesaoncalldate").val(date);
-                        $("#updatesastaff").val(sso).trigger("change");
-        
-                        $('#updatesa-modal').modal('show');
-                    }
+                    error: failureCallback
                 });
-        
-                calendar.render();
+            },
+            eventClick: function (info) {
+                const { id, oncallDate, sso } = info.event.extendedProps;
+                $("#ocsaid").val(id);
+                $("#updatesaoncalldate").val(oncallDate);
+                $("#updatesastaff").val(sso).trigger("change");
+                $('#updatesa-modal').modal('show');
             }
-        
-            // Setup AJAX CSRF
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-        
-            // Default to today
-            let today = moment().format('YYYY-MM-DD');
-            $("#sacalendardate").val(today);
-        
-            // Wait for tab transition
-            setTimeout(function () {
-                initCalendar(today);
-            }, 200); // Maybe increase delay a bit if needed
-        
-            // On location or date change
-            $("#salocation, #sacalendardate").on("change", function () {
-                let selectedDate = $("#sacalendardate").val(); // Get value from date input only
-                initCalendar(selectedDate);
-            });
+        });
 
-            $('.assign-sa').on('click', function() {
+        calendar.render();
+    }
 
-                $('#assignsa-modal').modal('show');
+    $.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    });
 
-            });
+    const today = moment().format('YYYY-MM-DD');
+    $("#sacalendardate").val(today);
+    renderCalendar(today);
 
-            $('.save-ocsa').on('click', async function() {
+    $("#salocation, #sacalendardate").on("change", () => {
+        renderCalendar($("#sacalendardate").val());
+    });
 
-                var form        = $(this).parent().parent().find('form#oncallsaform');
-                var formData    = await getAllInput(form);
-                var data        = processSerialize(formData);
-                var url         = config.routes.oncallassignment.sa.save;
+    $('.assign-sa').on('click', () => $('#assignsa-modal').modal('show'));
 
-                // console.log(data);
+    $('.save-ocsa').on('click', async function () {
+        const form = $('#oncallsaform');
+        const data = processSerialize(await getAllInput(form));
+        const url = config.routes.oncallassignment.sa.save;
 
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    dataType: "json",
-                    data: data,
-                    beforeSend: function(){
-                        $("#loading-overlay").show();
-                    },
-                    success: function(data) {
-                        $("#loading-overlay").hide();
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Successfully Saved!",
-                            icon: "success",
-                            buttonsStyling: false,
-                            showConfirmButton: false,
-                            timer: 3000
-                        });
+        $.ajax({
+            url, type: "POST", dataType: "json", data,
+            beforeSend: () => $("#loading-overlay").show(),
+            success: () => {
+                $("#loading-overlay").hide();
+                Swal.fire({ title: "Success!", text: "Successfully Saved!", icon: "success", showConfirmButton: false, timer: 3000 });
+                setTimeout(() => {
+                    calendar.refetchEvents();
+                    $('#assignsa-modal').modal('hide');
+                }, 1000);
+            },
+            error: (xhr, status, error) => {
+                toastr.error('Error saving reaction: ' + error, { timeOut: 5000 });
+            }
+        });
+    });
 
-                        setTimeout(function() {
-                            calendar.refetchEvents();
-                            $('#assignsa-modal').modal('hide');
-                        }, 1000);
-                    },
-                    error: function(xhr, status, error) {
-                        toastr.error('Error saving reaction: ' + error, {timeOut: 5000});
-                    }
-                });
+    $('.update-ocsa').on('click', async function () {
+        const form = $('#updateoncallsaform');
+        const data = processSerialize(await getAllInput(form));
+        const url = config.routes.oncallassignment.sa.update;
 
-            });
+        $.ajax({
+            url, type: "POST", dataType: "json", data,
+            beforeSend: () => $("#loading-overlay").show(),
+            success: () => {
+                $("#loading-overlay").hide();
+                Swal.fire({ title: "Success!", text: "Successfully Updated!", icon: "success", showConfirmButton: false, timer: 3000 });
+                setTimeout(() => {
+                    calendar.refetchEvents();
+                    $('#updatesa-modal').modal('hide');
+                }, 1000);
+            },
+            error: (xhr, status, error) => {
+                toastr.error('Error saving reaction: ' + error, { timeOut: 5000 });
+            }
+        });
+    });
 
-            $('.update-ocsa').on('click', async function() {
+    const validateDateRange = (startId, endId) => {
+        const $start = $('#' + startId);
+        const $end = $('#' + endId);
 
-                var form        = $(this).parent().parent().find('form#updateoncallsaform');
-                var formData    = await getAllInput(form);
-                var data        = processSerialize(formData);
-                var url         = config.routes.oncallassignment.sa.update;
+        $end.prop('disabled', true);
 
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    dataType: "json",
-                    data: data,
-                    beforeSend: function(){
-                        $("#loading-overlay").show();
-                    },
-                    success: function(data) {
-                        $("#loading-overlay").hide();
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Successfully Updated!",
-                            icon: "success",
-                            buttonsStyling: false,
-                            showConfirmButton: false,
-                            timer: 3000
-                        });
+        $start.on('change', () => {
+            const val = $start.val();
+            $end.prop('disabled', !val).attr('min', val || '');
+            if (!val) $end.val('');
+        });
 
-                        setTimeout(function() {
-                            calendar.refetchEvents();
-                            $('#updatesa-modal').modal('hide');
-                        }, 1000);
-                    },
-                    error: function(xhr, status, error) {
-                        toastr.error('Error saving reaction: ' + error, {timeOut: 5000});
-                    }
-                });
+        $end.on('change', () => {
+            if ($end.val() < $start.val()) {
+                alert("End date cannot be before the start date!");
+                $end.val('');
+            }
+        });
+    };
 
-            });
+    // Apply validation
+    [
+        ['tloncallstart', 'tloncallend'],
+    ].forEach(([start, end]) => validateDateRange(start, end));
 
-            //Checking Date CT
-            //Consulltant start
-            $('#tloncallend').prop('disabled', true);
-            $('#tloncallstart').on('change', function() {
-                let startDate = $(this).val();
-                if (startDate) {
-                    $('#tloncallend').prop('disabled', false);
-                    $('#tloncallend').attr('min', startDate);
-                } else {
-                    $('#tloncallend').val('').prop('disabled', true);
-                }
-            });
+    for (let i = 1; i <= 6; i++) {
+        const startSelector = '#ioncallstart' + i;
+        const endSelector = '#ioncallend' + i;
 
-            $('#tloncallend').on('change', function() {
-                let startDate = $('#tloncallstart').val();
-                let endDate = $(this).val();
-                if (endDate < startDate) {
-                    alert("End date cannot be before the start date!");
-                    $(this).val('');
-                }
-            });
-            //Consulltant end
+        // Disable end input initially
+        $(endSelector).prop('disabled', true);
 
-            //Firstcall start
-            $('#ioncallend').prop('disabled', true);
-            $('#ioncallstart').on('change', function() {
-                let startDate = $(this).val();
-                if (startDate) {
-                    $('#ioncallend').prop('disabled', false);
-                    $('#ioncallend').attr('min', startDate);
-                } else {
-                    $('#ioncallend').val('').prop('disabled', true);
-                }
-            });
+        // When start date changes
+        $(startSelector).on('change', function () {
+            let startDate = $(this).val();
+            if (startDate) {
+                $(endSelector).prop('disabled', false);
+                $(endSelector).attr('min', startDate);
+            } else {
+                $(endSelector).val('').prop('disabled', true);
+            }
+        });
 
-            $('#ioncallend').on('change', function() {
-                let startDate = $('#ioncallstart').val();
-                let endDate = $(this).val();
-                if (endDate < startDate) {
-                    alert("End date cannot be before the start date!");
-                    $(this).val('');
-                }
-            });
-            //Firstcall end
+        // Validate end date
+        $(endSelector).on('change', function () {
+            let startDate = $(startSelector).val();
+            let endDate = $(this).val();
+            if (endDate < startDate) {
+                alert("End date cannot be before the start date!");
+                $(this).val('');
+            }
+        });
+    }
 
-            //Thirdcall start
-            $('#medoncallend').prop('disabled', true);
-            $('#medoncallstart').on('change', function() {
-                let startDate = $(this).val();
-                if (startDate) {
-                    $('#medoncallend').prop('disabled', false);
-                    $('#medoncallend').attr('min', startDate);
-                } else {
-                    $('#medoncallend').val('').prop('disabled', true);
-                }
-            });
+    for (let i = 1; i <= 6; i++) {
+        const startSelector = '#runoncallstart' + i;
+        const endSelector = '#runoncallend' + i;
 
-            $('#medoncallend').on('change', function() {
-                let startDate = $('#medoncallstart').val();
-                let endDate = $(this).val();
-                if (endDate < startDate) {
-                    alert("End date cannot be before the start date!");
-                    $(this).val('');
-                }
-            });
-            //Thirdcall end
+        // Disable end input initially
+        $(endSelector).prop('disabled', true);
 
-            //ICUAM start
-            $('#runoncallend').prop('disabled', true);
-            $('#runoncallstart').on('change', function() {
-                let startDate = $(this).val();
-                if (startDate) {
-                    $('#runoncallend').prop('disabled', false);
-                    $('#runoncallend').attr('min', startDate);
-                } else {
-                    $('#runoncallend').val('').prop('disabled', true);
-                }
-            });
+        // When start date changes
+        $(startSelector).on('change', function () {
+            let startDate = $(this).val();
+            if (startDate) {
+                $(endSelector).prop('disabled', false);
+                $(endSelector).attr('min', startDate);
+            } else {
+                $(endSelector).val('').prop('disabled', true);
+            }
+        });
 
-            $('#runoncallend').on('change', function() {
-                let startDate = $('#runoncallstart').val();
-                let endDate = $(this).val();
-                if (endDate < startDate) {
-                    alert("End date cannot be before the start date!");
-                    $(this).val('');
-                }
-            });
-            //ICUAM end
+        // Validate end date
+        $(endSelector).on('change', function () {
+            let startDate = $(startSelector).val();
+            let endDate = $(this).val();
+            if (endDate < startDate) {
+                alert("End date cannot be before the start date!");
+                $(this).val('');
+            }
+        });
+    }
 
-            //ICUPM start
-            $('#obsoncallend').prop('disabled', true);
-            $('#obsoncallstart').on('change', function() {
-                let startDate = $(this).val();
-                if (startDate) {
-                    $('#obsoncallend').prop('disabled', false);
-                    $('#obsoncallend').attr('min', startDate);
-                } else {
-                    $('#obsoncallend').val('').prop('disabled', true);
-                }
-            });
+    for (let i = 1; i <= 6; i++) {
+        const startSelector = '#medoncallstart' + i;
+        const endSelector = '#medoncallend' + i;
 
-            $('#obsoncallend').on('change', function() {
-                let startDate = $('#obsoncallstart').val();
-                let endDate = $(this).val();
-                if (endDate < startDate) {
-                    alert("End date cannot be before the start date!");
-                    $(this).val('');
-                }
-            });
-            //ICUPM end
-            //Checking Date CT End 
-        }
-    }); 
-});
+        // Disable end input initially
+        $(endSelector).prop('disabled', true);
+
+        // When start date changes
+        $(startSelector).on('change', function () {
+            let startDate = $(this).val();
+            if (startDate) {
+                $(endSelector).prop('disabled', false);
+                $(endSelector).attr('min', startDate);
+            } else {
+                $(endSelector).val('').prop('disabled', true);
+            }
+        });
+
+        // Validate end date
+        $(endSelector).on('change', function () {
+            let startDate = $(startSelector).val();
+            let endDate = $(this).val();
+            if (endDate < startDate) {
+                alert("End date cannot be before the start date!");
+                $(this).val('');
+            }
+        });
+    }
+
+     // Show next Incharge section
+     $('.show-next-incharge').on('click', function () {
+        const next = $(this).data('next');
+        $('#incharge-' + next).show();
+    });
+
+    // Hide current Incharge section and clear fields
+    $('.hide-prev-incharge').on('click', function () {
+        const prev = $(this).data('prev');
+        const section = $('#incharge-' + prev);
+        section.find('select, input').val('').trigger('change');
+        section.hide();
+    });
+
+    // Show next Medication section
+    $('.show-next-medication').on('click', function () {
+        const next = $(this).data('next');
+        $('#medication-' + next).show();
+    });
+
+    // Hide current Medication section and clear fields
+    $('.hide-prev-medication').on('click', function () {
+        const prev = $(this).data('prev');
+        const section = $('#medication-' + prev);
+        section.find('select, input').val('').trigger('change');
+        section.hide();
+    });
+
+    $('.show-next-runner').on('click', function () {
+        const next = $(this).data('next');
+        $('#runner-' + next).show();
+    });
+
+    // Hide current Runner and clear inputs
+    $('.hide-prev-runner').on('click', function () {
+        const prev = $(this).data('prev');
+        const section = $('#runner-' + prev);
+        section.find('select, input').val('').trigger('change');
+        section.hide();
+    });
+}

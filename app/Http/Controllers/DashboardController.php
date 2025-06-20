@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use App\Models\WardLocation;
+
 
 use Auth;
 
 class DashboardController extends Controller
 {
     public function index(Request $request){
+
+        $wardlist = WardLocation::all();
+
+        // dd($ward);
 
         //BED_SEARCH
         $uri = env('BED_SEARCH');
@@ -146,7 +152,119 @@ class DashboardController extends Controller
             $results[$group] = number_format($percentage, 2) . '%';
         }
 
-        return view('dashboard.index', compact('summary', 'results'));
+        //Card
+        $selectedWardCode = $request->input('wardcode');
+
+        if($selectedWardCode == null){
+            $selectedWardCode = "A2ZONE1";
+        }
+
+        $today = Carbon::today();
+        $tomorrow = Carbon::tomorrow();
+        $inThreeDays = $today->copy()->addDays(3);
+        $inSevenDays = $today->copy()->addDays(7);
+
+        $cardData = [];
+
+    foreach ($content["WardList"] as $ward) {
+        $wardName = $ward['warddesc'] ?? $ward['wardcode'];
+        $wardCode = $ward['wardcode'] ?? '';
+
+        // Only include the selected ward
+        if (!empty($selectedWardCode) && $wardCode !== $selectedWardCode) {
+            continue;
+        }
+
+        $totalBeds = isset($ward['BedList']) ? count($ward['BedList']) : 0;
+        $occupied = 0;
+        $unavailable = 0;
+
+        // New counters
+        $dischargeToday = 0;
+        $dischargeTomorrow = 0;
+        $discharge3to7 = 0;
+        $nurseStationPatients = 0;
+
+        // Loop beds
+        foreach ($ward['BedList'] ?? [] as $bed) {
+            if (!empty($bed['episodeno'])) {
+                $occupied++;
+            }
+
+            if (!empty($bed['bedstatus']) && strtolower($bed['bedstatus']) === 'unavailable') {
+                $unavailable++;
+            }
+
+            // Discharge date logic
+            if (!empty($bed['episodeno']) && !empty($bed['estdisdate'])) {
+                try {
+                    $estDate = Carbon::createFromFormat('d/m/Y', trim($bed['estdisdate']));
+                    if ($estDate->isToday()) {
+                        $dischargeToday++;
+                    } elseif ($estDate->isTomorrow()) {
+                        $dischargeTomorrow++;
+                    } elseif ($estDate->between($inThreeDays, $inSevenDays)) {
+                        $discharge3to7++;
+                    }
+                } catch (\Exception $e) {
+                    Log::error("Invalid estdisdate in BedList: {$bed['estdisdate']}", [
+                        'ward' => $wardName,
+                        'bedno' => $bed['bedno'] ?? null,
+                        'error' => $e->getMessage(),
+                    ]);
+                }
+            }
+        }
+
+        // Loop nurse station patients
+        foreach ($ward['NurseStation'] ?? [] as $nurse) {
+            if (!empty($nurse['episodeno'])) {
+                $nurseStationPatients++;
+            }
+
+            if (!empty($nurse['episodeno']) && !empty($nurse['estdisdate'])) {
+                try {
+                    $estDate = Carbon::createFromFormat('d/m/Y', trim($nurse['estdisdate']));
+                    if ($estDate->isToday()) {
+                        $dischargeToday++;
+                    } elseif ($estDate->isTomorrow()) {
+                        $dischargeTomorrow++;
+                    } elseif ($estDate->between($inThreeDays, $inSevenDays)) {
+                        $discharge3to7++;
+                    }
+                } catch (\Exception $e) {
+                    Log::error("Invalid estdisdate in NurseStation: {$nurse['estdisdate']}", [
+                        'ward' => $wardName,
+                        'error' => $e->getMessage(),
+                    ]);
+                }
+            }
+        }
+
+        $cardData[] = [
+            'ward' => $wardName,
+            'wardcode' => $wardCode,
+            'total' => $totalBeds,
+            'occupied' => $occupied,
+            'available' => $totalBeds - $occupied - $unavailable,
+            'unavailable' => $unavailable,
+
+            // New data
+            'dischargeToday' => $dischargeToday,
+            'dischargeTomorrow' => $dischargeTomorrow,
+            'discharge3to7' => $discharge3to7,
+            'nursePatients' => $nurseStationPatients,
+        ];
+    }
+
+
+        // dd($cardData); 
+
+
+        return view('dashboard.index', compact('summary', 'results', 'wardlist'))
+        ->with('warddata', $content["WardList"])
+        ->with('cardData', $cardData)
+        ->with('selectedWardCode', $selectedWardCode);
 
     }
 }

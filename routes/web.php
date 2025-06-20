@@ -7,19 +7,19 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OnCallAssignmentController;
 use App\Http\Controllers\PatManagementController;
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/sso-login', [AuthController::class, 'loginSSO'])->name('sso.login');
 Route::post('/sso-logout', [AuthController::class, 'logoutSSO'])->name('sso.logout');
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard','middleware' => 'auth'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 });
 
-Route::group(['prefix' => 'oncallassignment'], function () {
+Route::group(['prefix' => 'oncallassignment','middleware' => 'auth'], function () {
     Route::get('/', [OnCallAssignmentController::class, 'index'])->name('ocassignment.index');
 
     Route::group(['prefix' => 'cardiothoracic'], function () {
@@ -72,7 +72,7 @@ Route::group(['prefix' => 'oncallassignment'], function () {
 
 });
 
-Route::group(['prefix' => 'patmanagement'], function () {
+Route::group(['prefix' => 'patmanagement','middleware' => 'auth'], function () {
     Route::get('/', [PatManagementController::class, 'index'])->name('patmanagement.index');
     Route::get('/getlist', [PatManagementController::class, 'getWardPatientList'])->name('patmanagement.getwardpatientlist');
     Route::get('/getpatientflag', [PatManagementController::class, 'getPatientFlag'])->name('patmanagement.getpatientflag');

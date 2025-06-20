@@ -26,6 +26,3 @@
     </div>
 </div>
 
-@push('script')
-    <script src="{{ asset('js/oncall/cardiothoracic.js') }}"></script>
-@endpush

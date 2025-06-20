@@ -44,9 +44,9 @@
                                                             <label for="ioam" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">AM:</label>
                                                             <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="ioam" name="ioam">
                                                                 <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
+                                                                @foreach ($careprov as $staffs)
+                                                                    <option value="{{ $staffs->cpid }}">
+                                                                        {{ $staffs->cpName }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -55,9 +55,9 @@
                                                             <label for="iopm" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">PM:</label>
                                                             <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="iopm" name="iopm">
                                                                 <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
+                                                                @foreach ($careprov as $staffs)
+                                                                    <option value="{{ $staffs->cpid }}">
+                                                                        {{ $staffs->cpName }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -66,9 +66,9 @@
                                                             <label for="iooncall" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">On Call:</label>
                                                             <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="iooncall" name="iooncall">
                                                                 <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
+                                                                @foreach ($careprov as $staffs)
+                                                                    <option value="{{ $staffs->cpid }}">
+                                                                        {{ $staffs->cpName }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -96,9 +96,9 @@
                                                             <label for="fwam" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">AM:</label>
                                                             <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="fwam" name="fwam">
                                                                 <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
+                                                                @foreach ($careprov as $staffs)
+                                                                    <option value="{{ $staffs->cpid }}">
+                                                                        {{ $staffs->cpName }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -107,9 +107,9 @@
                                                             <label for="fwpm" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">PM:</label>
                                                             <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="fwpm" name="fwpm">
                                                                 <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
+                                                                @foreach ($careprov as $staffs)
+                                                                    <option value="{{ $staffs->cpid }}">
+                                                                        {{ $staffs->cpName }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -118,9 +118,9 @@
                                                             <label for="fwoncall" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">On Call:</label>
                                                             <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="fwoncall" name="fwoncall">
                                                                 <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
+                                                                @foreach ($careprov as $staffs)
+                                                                    <option value="{{ $staffs->cpid }}">
+                                                                        {{ $staffs->cpName }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -148,9 +148,9 @@
                                                             <label for="fsam" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">AM:</label>
                                                             <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="fsam" name="fsam">
                                                                 <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
+                                                                @foreach ($careprov as $staffs)
+                                                                    <option value="{{ $staffs->cpid }}">
+                                                                        {{ $staffs->cpName }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -159,9 +159,9 @@
                                                             <label for="fspm" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">PM:</label>
                                                             <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="fspm" name="fspm">
                                                                 <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
+                                                                @foreach ($careprov as $staffs)
+                                                                    <option value="{{ $staffs->cpid }}">
+                                                                        {{ $staffs->cpName }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -170,9 +170,9 @@
                                                             <label for="fsoncall" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">On Call:</label>
                                                             <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="fsoncall" name="fsoncall">
                                                                 <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
+                                                                @foreach ($careprov as $staffs)
+                                                                    <option value="{{ $staffs->cpid }}">
+                                                                        {{ $staffs->cpName }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -191,58 +191,68 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row mb-5">
-                                            <div class="col-md-12">
-                                                <label for="rs" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Rescue Squad</label>
-                                                <div class="border rounded p-2">
-                                                    <div class="row mt-2">
-                                                        <div class="col-md-4">
-                                                            <label for="rsam" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">AM:</label>
-                                                            <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="rsam" name="rsam">
-                                                                <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
+                                        @php
+                                            $careprovOptions = '';
+                                            foreach ($careprov as $staffs) {
+                                                $careprovOptions .= '<option value="' . $staffs->cpid . '">' . $staffs->cpName . '</option>';
+                                            }
+                                        @endphp
+
+                                        @for ($i = 1; $i <= 4; $i++)
+                                            <div class="row mb-5" id="rescue-squad-{{ $i }}" style="{{ $i > 1 ? 'display: none;' : '' }}">
+                                                <div class="col-md-12">
+                                                    <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Rescue Squad {{ $i }}</label>
+                                                    <div class="border rounded p-2">
+                                                        <div class="row mt-2">
+                                                            <div class="col-md-4">
+                                                                <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">AM:</label>
+                                                                <select class="form-select form-select-sm select2-field" data-control="select2" data-dropdown-parent="#assignert-modal" data-placeholder="Select an option" id="rsam{{ $i }}" name="rsam{{ $i }}">
+                                                                    <option></option>
+                                                                    {!! $careprovOptions !!}
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">PM:</label>
+                                                                <select class="form-select form-select-sm select2-field" data-control="select2" data-dropdown-parent="#assignert-modal" data-placeholder="Select an option" id="rspm{{ $i }}" name="rspm{{ $i }}">
+                                                                    <option></option>
+                                                                    {!! $careprovOptions !!}
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">On Call:</label>
+                                                                <select class="form-select form-select-sm select2-field" data-control="select2" data-dropdown-parent="#assignert-modal" data-placeholder="Select an option" id="rsoncall{{ $i }}" name="rsoncall{{ $i }}">
+                                                                    <option></option>
+                                                                    {!! $careprovOptions !!}
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-4 ">
-                                                            <label for="rspm" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">PM:</label>
-                                                            <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="rspm" name="rspm">
-                                                                <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
+                                                        <div class="row mt-2">
+                                                            <div class="col-md-6">
+                                                                <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
+                                                                <input class="form-control form-control-sm" type="datetime-local" name="rsoncallstart{{ $i }}" id="rsoncallstart{{ $i }}">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date End:</label>
+                                                                <input class="form-control form-control-sm" type="datetime-local" name="rsoncallend{{ $i }}" id="rsoncallend{{ $i }}">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <label for="rsoncall" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">On Call:</label>
-                                                            <select class="form-select form-select-sm" data-control="select2" data-dropdown-parent="#assignert-modal" data-dropdown-parent="body" data-placeholder="Select an option" id="rsoncall" name="rsoncall">
-                                                                <option></option>
-                                                                @foreach ($sso as $staffs)
-                                                                    <option value="{{ $staffs->id }}">
-                                                                        {{ $staffs->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
+                                                        <div class="text-end mt-2">
+                                                            @if ($i == 1)
+                                                                {{-- Rescue Squad 1: Only + --}}
+                                                                <button type="button" class="btn btn-sm btn-success show-next" data-next="2">+</button>
+                                                            @elseif ($i >= 2 && $i <= 3)
+                                                                {{-- Rescue Squad 2 & 3: + and - --}}
+                                                                <button type="button" class="btn btn-sm btn-success show-next" data-next="{{ $i + 1 }}">+</button>
+                                                                <button type="button" class="btn btn-sm btn-danger hide-prev" data-prev="{{ $i }}">-</button>
+                                                            @elseif ($i == 4)
+                                                                {{-- Rescue Squad 4: Only - --}}
+                                                                <button type="button" class="btn btn-sm btn-danger hide-prev" data-prev="4">-</button>
+                                                            @endif
                                                         </div>
                                                     </div>
-                                                    <div class="row mt-2">
-                                                        <div class="col-md-6">
-                                                            <label for="rsoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="rsoncallstart" id="rsoncallstart">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="rsoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="rsoncallend" id="rsoncallend">
-                                                        </div>
-                                                    </div>       
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endfor
                                     </div> 
                                 </div>
                             </div>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\UserSso;
 use App\Models\WardLocation;
 use App\Models\PatientManagements;
+use App\Models\ProcedureList;
 
 use Auth;
 use Carbon\Carbon;
@@ -60,11 +61,9 @@ class PatManagementController extends Controller
 
             // dd($request->all());
 
-
             $existingRecord = PatientManagements::where('mrn', $request->mrn)->first();
             
             if($existingRecord == null){
-
 
                 $storeflag                      = new PatientManagements();
                 $storeflag->mrn                 = $request->mrn ?? null;
@@ -73,8 +72,6 @@ class PatManagementController extends Controller
                 $storeflag->fasting             = $request->fasting ?? null;
                 $storeflag->fasting_remark      = $request->fasting_remark ?? null;
                 $storeflag->procedure           = $request->procedure ?? null;
-                $storeflag->procedure_remark    = $request->procedure_remark ?? null;
-                $storeflag->financial           = $request->financial ?? null;
                 $storeflag->fall_risk           = $request->fallrisk ?? null;
                 $storeflag->heart_failure       = $request->heartfailure ?? null;
                 $storeflag->respi               = $request->respi ?? null;
@@ -89,6 +86,21 @@ class PatManagementController extends Controller
                 $storeflag->created_at          = Carbon::now();
                 $storeflag->save();
 
+                $prodlist = ProcedureList::where('patmanage_id', $storeflag->id)->where('status_id', 2)->get();
+
+                if(isset($request->procedure) && isset($request->procedure_remark)){
+                    foreach($request->procedure_remark as $index => $remark){
+                        $storeprocedure                 = new ProcedureList();
+                        $storeprocedure->patmanage_id   = $storeflag->id;
+                        $storeprocedure->procedure      = $remark;
+                        $storeprocedure->financial      = isset($request->financial_switch[$index]) ? 1 : null;
+                        $storeprocedure->status_id      = 2;
+                        $storeprocedure->created_at     = Carbon::now();
+                        $storeprocedure->updated_at     = Carbon::now();
+                        $storeprocedure->save();
+                    }
+                }
+
             }else{
 
                 $existingRecord->mrn                 = $request->mrn ?? null;
@@ -97,8 +109,6 @@ class PatManagementController extends Controller
                 $existingRecord->fasting             = $request->fasting ?? null;
                 $existingRecord->fasting_remark      = $request->fasting_remark ?? null;
                 $existingRecord->procedure           = $request->procedure ?? null;
-                $existingRecord->procedure_remark    = $request->procedure_remark ?? null;
-                $existingRecord->financial           = $request->financial ?? null;
                 $existingRecord->fall_risk           = $request->fallrisk ?? null;
                 $existingRecord->heart_failure       = $request->heartfailure ?? null;
                 $existingRecord->respi               = $request->respi ?? null;
@@ -112,6 +122,29 @@ class PatManagementController extends Controller
                 $existingRecord->updated_by          = Auth::user()->id;
                 $existingRecord->updated_at          = Carbon::now();
                 $existingRecord->save();
+
+                $prodlist = ProcedureList::where('patmanage_id', $existingRecord->id)->where('status_id', 2)->get();
+
+                if($prodlist != null){
+                    foreach($prodlist as $list){
+                        $list->status_id = 1;
+                        $list->updated_at = Carbon::now();
+                        $list->save();
+                    }
+                }
+
+                if(isset($request->procedure) && isset($request->procedure_remark)){
+                    foreach($request->procedure_remark as $index => $remark){
+                        $storeprocedure                 = new ProcedureList();
+                        $storeprocedure->patmanage_id   = $existingRecord->id;
+                        $storeprocedure->procedure      = $remark;
+                        $storeprocedure->financial      = isset($request->financial_switch[$index]) ? 1 : null;
+                        $storeprocedure->status_id      = 2;
+                        $storeprocedure->created_at     = Carbon::now();
+                        $storeprocedure->updated_at     = Carbon::now();
+                        $storeprocedure->save();
+                    }
+                }
 
             }
 
@@ -138,7 +171,11 @@ class PatManagementController extends Controller
 
         try 
         {
-            $existingRecord = PatientManagements::where('mrn', $request->mrn)->first();
+            $existingRecord = PatientManagements::with(['procedureList' => function($query) {
+                $query->where('status_id', 2);
+            }])->where('mrn', $request->mrn)->first();
+
+            // dd($existingRecord);
 
             return response()->json([
                 'status' => 'success',
