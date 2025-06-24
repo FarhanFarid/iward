@@ -147,6 +147,13 @@ function initSaTab() {
         const data = processSerialize(await getAllInput(form));
         const url = config.routes.oncallassignment.sa.save;
 
+        const location = $('#sawardlocation').val();
+
+        if (location.trim() === '') {
+            toastr.error('Please select location.', { timeOut: 3000 });
+            return;
+        }
+
         $.ajax({
             url, type: "POST", dataType: "json", data,
             beforeSend: () => $("#loading-overlay").show(),

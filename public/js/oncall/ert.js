@@ -196,30 +196,34 @@ function initErtTab() {
         });
     });
 
-    const datePairs = [
-        ['iooncallstart', 'iooncallend'],
-        ['fwoncallstart', 'fwoncallend'],
-        ['fsoncallstart', 'fsoncallend']
-    ];
 
-    datePairs.forEach(([startId, endId]) => {
+
+    const validateDateRange = (startId, endId) => {
         const $start = $('#' + startId);
         const $end = $('#' + endId);
+
         $end.prop('disabled', true);
 
-        $start.on('change', function () {
-            let val = $(this).val();
-            $end.prop('disabled', !!val).attr('min', val || '');
+        $start.on('change', () => {
+            const val = $start.val();
+            $end.prop('disabled', !val).attr('min', val || '');
             if (!val) $end.val('');
         });
 
-        $end.on('change', function () {
-            if ($(this).val() < $start.val()) {
+        $end.on('change', () => {
+            if ($end.val() < $start.val()) {
                 alert("End date cannot be before the start date!");
-                $(this).val('');
+                $end.val('');
             }
         });
-    });
+    };
+
+    // Apply validation
+    [
+        ['iooncallstart', 'iooncallend'],
+        ['fwoncallstart', 'fwoncallend'],
+        ['fsoncallstart', 'fsoncallend']
+    ].forEach(([start, end]) => validateDateRange(start, end));
 
     for (let i = 1; i <= 4; i++) {
         const startSelector = '#rsoncallstart' + i;
