@@ -959,6 +959,34 @@ class OnCallAssignmentController extends Controller
                     }
                 }
             }
+
+            if ($request->nm_remark != null) {
+
+                $existingRecordsmo = OncallNurseManagerList::where('remark', '!=', null)->first();
+
+                if ($existingRecordsmo) {
+
+                    $existingRecordsmo->remark             = $request->nm_remark;
+                    $existingRecordsmo->status_id          = $request->nm_remark_switch ?? null;
+                    $existingRecordsmo->updated_by         = Auth::user()->id;
+                    $existingRecordsmo->updated_at         = Carbon::now();
+                    $existingRecordsmo->save();
+
+                } else {
+
+                    $storeoccdmo                    = new OncallNurseManagerList();
+                    $storeoccdmo->remark            = $request->nm_remark;
+                    $storeoccdmo->status_id         = $request->nm_remark_switch ?? null;
+                    $storeoccdmo->created_by        = Auth::user()->id;
+                    $storeoccdmo->created_at        = Carbon::now();
+                    $storeoccdmo->updated_by        = Auth::user()->id;
+                    $storeoccdmo->updated_at        = Carbon::now();
+                    $storeoccdmo->save();
+
+                }
+
+            }
+
              
             return response()->json([
                 'status' => 'success',

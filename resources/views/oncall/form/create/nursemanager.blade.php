@@ -150,6 +150,22 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row mb-5">
+                                            <div class="col-md-12">
+                                                <label for="nmoncall" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Remarks</label>
+                                                <div class="d-flex border">
+                                                    <div class="col-md-10 p-2">
+                                                        <label for="nm_remark" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Description:</label>
+                                                        <input class="form-control form-control-sm" type="text" name="nm_remark" id="nm_remark">
+                                                    </div>
+                                                    <div class="col-md-2 p-2">
+                                                        <label class="form-check form-switch form-check-custom form-check-solid mt-7">
+                                                            <input class="form-check-input" type="checkbox" name="nm_remark_switch" id="nm_remark_switch" value="1"/>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div> 
                                 </div>
                             </div>
