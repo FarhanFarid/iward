@@ -41,6 +41,110 @@ class OnCallAssignmentController extends Controller
         ));
     }
 
+    public function indexCT(Request $request){
+
+        $sso = UserSso::where('status_id', 2)->select('id', 'name')->get();
+        $careprov = Careprovider::where('status_id', 2)->get();
+        $ward = WardLocation::all();
+
+        return view('oncall.index.cardiothoracic', compact(
+            'sso', 
+            'ward', 
+            'careprov', 
+        ));
+    }
+
+    public function indexCD(Request $request){
+
+        $sso = UserSso::where('status_id', 2)->select('id', 'name')->get();
+        $careprov = Careprovider::where('status_id', 2)->get();
+        $ward = WardLocation::all();
+
+        return view('oncall.index.cardiology', compact(
+            'sso', 
+            'ward', 
+            'careprov', 
+        ));
+    }
+
+    public function indexNM(Request $request){
+
+        $sso = UserSso::where('status_id', 2)->select('id', 'name')->get();
+        $careprov = Careprovider::where('status_id', 2)->get();
+        $ward = WardLocation::all();
+
+        return view('oncall.index.nmanager', compact(
+            'sso', 
+            'ward', 
+            'careprov', 
+        ));
+    }
+
+    public function indexAnaes(Request $request){
+
+        $sso = UserSso::where('status_id', 2)->select('id', 'name')->get();
+        $careprov = Careprovider::where('status_id', 2)->get();
+        $ward = WardLocation::all();
+
+        return view('oncall.index.anaes', compact(
+            'sso', 
+            'ward', 
+            'careprov', 
+        ));
+    }
+
+    public function indexPchc(Request $request){
+
+        $sso = UserSso::where('status_id', 2)->select('id', 'name')->get();
+        $careprov = Careprovider::where('status_id', 2)->get();
+        $ward = WardLocation::all();
+
+        return view('oncall.index.pchc', compact(
+            'sso', 
+            'ward', 
+            'careprov', 
+        ));
+    }
+
+    public function indexOther(Request $request){
+
+        $sso = UserSso::where('status_id', 2)->select('id', 'name')->get();
+        $careprov = Careprovider::where('status_id', 2)->get();
+        $ward = WardLocation::all();
+
+        return view('oncall.index.other', compact(
+            'sso', 
+            'ward', 
+            'careprov', 
+        ));
+    }
+
+    public function indexSa(Request $request){
+
+        $sso = UserSso::where('status_id', 2)->select('id', 'name')->get();
+        $careprov = Careprovider::where('status_id', 2)->get();
+        $ward = WardLocation::all();
+
+        return view('oncall.index.sa', compact(
+            'sso', 
+            'ward', 
+            'careprov', 
+        ));
+    }
+
+    public function indexErt(Request $request){
+
+        $sso = UserSso::where('status_id', 2)->select('id', 'name')->get();
+        $careprov = Careprovider::where('status_id', 2)->get();
+        $ward = WardLocation::all();
+
+        return view('oncall.index.ert', compact(
+            'sso', 
+            'ward', 
+            'careprov', 
+        ));
+    }
+
     public function saveAssignedCT(Request $request)
     {
         try 

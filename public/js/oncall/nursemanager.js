@@ -1,4 +1,7 @@
-function initNursemanagerTab() {
+
+
+
+$(document).ready(function () {
     "use strict";
 
     var calendar;
@@ -222,4 +225,4 @@ function initNursemanagerTab() {
             }
         });
     });
-}
+});

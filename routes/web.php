@@ -23,48 +23,56 @@ Route::group(['prefix' => 'oncallassignment','middleware' => 'auth'], function (
     Route::get('/', [OnCallAssignmentController::class, 'index'])->name('ocassignment.index');
 
     Route::group(['prefix' => 'cardiothoracic'], function () {
+        Route::get('/', [OnCallAssignmentController::class, 'indexCT'])->name('ocassignment.ct.index');
         Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedCT'])->name('ocassignment.ct.save');
         Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedCT'])->name('ocassignment.ct.update');
         Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedCT'])->name('ocassignment.ct.get');
     });
 
     Route::group(['prefix' => 'cardiology'], function () {
+        Route::get('/', [OnCallAssignmentController::class, 'indexCD'])->name('ocassignment.cd.index');
         Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedCD'])->name('ocassignment.cd.save');
         Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedCD'])->name('ocassignment.cd.update');
         Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedCD'])->name('ocassignment.cd.get');
     });
 
     Route::group(['prefix' => 'nurse-manager'], function () {
+        Route::get('/', [OnCallAssignmentController::class, 'indexNM'])->name('ocassignment.nm.index');
         Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedNM'])->name('ocassignment.nm.save');
         Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedNM'])->name('ocassignment.nm.update');
         Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedNM'])->name('ocassignment.nm.get');
     });
 
     Route::group(['prefix' => 'anaesthesia'], function () {
+        Route::get('/', [OnCallAssignmentController::class, 'indexAnaes'])->name('ocassignment.anaes.index');
         Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedAnaes'])->name('ocassignment.anaes.save');
         Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedAnaes'])->name('ocassignment.anaes.update');
         Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedAnaes'])->name('ocassignment.anaes.get');
     });
 
     Route::group(['prefix' => 'pchc'], function () {
+        Route::get('/', [OnCallAssignmentController::class, 'indexPchc'])->name('ocassignment.pchc.index');
         Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedPchc'])->name('ocassignment.pchc.save');
         Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedPchc'])->name('ocassignment.pchc.update');
         Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedPchc'])->name('ocassignment.pchc.get');
     });
 
     Route::group(['prefix' => 'other'], function () {
+        Route::get('/', [OnCallAssignmentController::class, 'indexOther'])->name('ocassignment.other.index');
         Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedOther'])->name('ocassignment.other.save');
         Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedOther'])->name('ocassignment.other.update');
         Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedOther'])->name('ocassignment.other.get');
     });
 
     Route::group(['prefix' => 'ert'], function () {
+        Route::get('/', [OnCallAssignmentController::class, 'indexErt'])->name('ocassignment.ert.index');
         Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedErt'])->name('ocassignment.ert.save');
         Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedErt'])->name('ocassignment.ert.update');
         Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedErt'])->name('ocassignment.ert.get');
     });
 
     Route::group(['prefix' => 'sa'], function () {
+        Route::get('/', [OnCallAssignmentController::class, 'indexSa'])->name('ocassignment.sa.index');
         Route::post('/save', [OnCallAssignmentController::class, 'saveAssignedSa'])->name('ocassignment.sa.save');
         Route::post('/update', [OnCallAssignmentController::class, 'updateAssignedSa'])->name('ocassignment.sa.update');
         Route::get('/getlist', [OnCallAssignmentController::class, 'getAssignedSa'])->name('ocassignment.sa.get');

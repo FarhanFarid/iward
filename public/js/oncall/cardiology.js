@@ -1,4 +1,5 @@
-function initCardiologyTab() {
+$(document).ready(function () {
+
     "use strict";
 
     var calendar;
@@ -230,4 +231,5 @@ function initCardiologyTab() {
             }
         });
     });
-}
+
+});

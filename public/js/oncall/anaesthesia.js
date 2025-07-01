@@ -1,4 +1,4 @@
-function initAnaesTab() {
+$(document).ready(function () {
     "use strict";
 
     let calendar;
@@ -188,4 +188,4 @@ function initAnaesTab() {
     bindDateValidation('#anaessroncallstart', '#anaessroncallend');
     bindDateValidation('#anaessricuoncallstart', '#anaessricuoncallend');
     bindDateValidation('#anaesmooncallstart', '#anaesmooncallend');
-}
+});

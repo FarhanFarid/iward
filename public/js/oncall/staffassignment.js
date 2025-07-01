@@ -1,4 +1,4 @@
-function initSaTab() {
+$(document).ready(function () {
     "use strict";
 
     let calendar;
@@ -345,4 +345,4 @@ function initSaTab() {
         section.find('select, input').val('').trigger('change');
         section.hide();
     });
-}
+});

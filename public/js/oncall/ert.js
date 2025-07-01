@@ -1,4 +1,4 @@
-function initErtTab() {
+$(document).ready(function () {
     "use strict";
 
     let calendar;
@@ -270,4 +270,4 @@ function initErtTab() {
         width: '100%',
         dropdownParent: $('#assignert-modal')
     });
-}
+});

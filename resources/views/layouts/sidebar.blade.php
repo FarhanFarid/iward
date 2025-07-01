@@ -19,31 +19,103 @@
                 <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
                     <!--begin:Menu sub-->
                     <div class="menu-sub menu-sub-accordion mt-5">
-                        <!--begin:Menu item-->
                         <div class="menu-item">
-                            <!--begin:Menu link-->
                             <a class="menu-link {{ request()->routeIs('dashboard.index') ? 'active' : '' }}" href="{{ route('dashboard.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Dashboard</span>
                             </a>
+                        </div>
+                        {{-- <div class="menu-item">
                             <a class="menu-link {{ request()->routeIs('ocassignment.index') ? 'active' : '' }}" href="{{ route('ocassignment.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">On Call Assignment</span>
                             </a>
+                        </div> --}}
+                        <div class="menu-item">
                             <a class="menu-link {{ request()->routeIs('patmanagement.index') ? 'active' : '' }}" href="{{ route('patmanagement.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Patient Management</span>
                             </a>
-                            <!--end:Menu link-->
+                        </div>                         
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->routeIs('ocassignment.*') ? 'show' : '' }}">
+                            <span class="menu-link">
+                                <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
+                                <span class="menu-title">Oncall Roster Assignment</span>
+                                <span class="menu-arrow"></span>
+                            </span>
+                            <div class="menu-sub menu-sub-accordion">
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->routeIs('ocassignment.ct.index') ? 'active' : '' }}" href="{{ route('ocassignment.ct.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Cardiothoracic</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->routeIs('ocassignment.cd.index') ? 'active' : '' }}" href="{{ route('ocassignment.cd.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Cardiology</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->routeIs('ocassignment.nm.index') ? 'active' : '' }}" href="{{ route('ocassignment.nm.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Nurse Manager</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->routeIs('ocassignment.anaes.index') ? 'active' : '' }}" href="{{ route('ocassignment.anaes.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Anaesthesia</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->routeIs('ocassignment.pchc.index') ? 'active' : '' }}" href="{{ route('ocassignment.pchc.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">PCHC</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->routeIs('ocassignment.other.index') ? 'active' : '' }}" href="{{ route('ocassignment.other.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Others</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->routeIs('ocassignment.sa.index') ? 'active' : '' }}" href="{{ route('ocassignment.sa.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Staff Assignment</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link {{ request()->routeIs('ocassignment.ert.index') ? 'active' : '' }}" href="{{ route('ocassignment.ert.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Area Response Team</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <!--end:Menu item-->
-
                     </div>
                     <!--end:Menu sub-->
                 </div>

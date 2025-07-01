@@ -1,4 +1,4 @@
-function initPchcTab() {
+$(document).ready(function () {
     "use strict";
 
     var calendar;
@@ -226,4 +226,4 @@ function initPchcTab() {
             }
         });
     });
-}
+});
