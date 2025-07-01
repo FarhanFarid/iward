@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use App\Models\WardLocation;
+use App\Models\Careprovider;
 
 
 use Auth;
@@ -267,4 +268,98 @@ class DashboardController extends Controller
         ->with('selectedWardCode', $selectedWardCode);
 
     }
+
+
+     //auto update careprovider
+     public function getApiUpdateCareprovider(Request $request)
+     {
+         try
+         {
+             $url    = env('STAFF_ALL');
+             $client = new \GuzzleHttp\Client(array( 'curl' => array( CURLOPT_SSL_VERIFYPEER => false, ), ));
+ 
+             $response = $client->request('GET', $url);
+             // dd($response);
+ 
+             $statusCode = $response->getStatusCode();
+             $content    = $response->getBody();
+ 
+             $content = json_decode($response->getBody(), true);
+ 
+             $data = [];
+ 
+             if(count($content['List CP']) > 0)
+             {
+                 foreach($content['List CP'] as $rn)
+                 {
+                     $temp = [];   
+                     
+                     if (stripos($rn['cpName'], 'Inactive') === false && stripos($rn['cpName'], 'KKM') === false)
+                     {
+                         $checkCpIdExist = Careprovider::where('cpid', $rn['cpid'])
+                                             ->where('status_id', 2)
+                                             ->first();
+ 
+                         if($checkCpIdExist == null)
+                         {
+                             $store = new Careprovider();
+                             $store->cpid        = $rn['cpid'];
+                             $store->cpCode      = $rn['cpCode'];
+                             $store->cpName      = $rn['cpName'];
+                             $store->cpType      = $rn['cpType'];
+                             $store->cpTypeID    = $rn['cpTypeID'];
+                             $store->cpMMCNo     = isset($rn['cpMMCNo']) ? $rn['cpMMCNo'] : null;
+                             $store->cpActive    = $rn['cpActive'];
+                             $store->status_id   = 2;
+                             $store->created_at  = Carbon::now();
+                             $store->updated_at  = Carbon::now();
+                             $store->save();
+                         }
+                         else
+                         {
+                             $checkCpIdExist->cpid        = $rn['cpid'];
+                             $checkCpIdExist->cpCode      = $rn['cpCode'];
+                             $checkCpIdExist->cpName      = $rn['cpName'];
+                             $checkCpIdExist->cpType      = $rn['cpType'];
+                             $checkCpIdExist->cpTypeID    = $rn['cpTypeID'];
+                             $checkCpIdExist->cpMMCNo     = isset($rn['cpMMCNo']) ? $rn['cpMMCNo'] : null;
+                             $checkCpIdExist->cpActive    = $rn['cpActive'];
+                             $checkCpIdExist->status_id   = 2;
+                             $checkCpIdExist->created_at  = Carbon::now();
+                             $checkCpIdExist->updated_at  = Carbon::now();
+                             $checkCpIdExist->save();
+                         }
+                     }
+                 }
+             }
+ 
+             Log::info('update careprovider cronjob run');
+ 
+             $response = response()->json(
+                 [
+                   'status'  => 'success',
+                   'message' => 'Successfully updated'
+                 ], 200
+             );
+ 
+             return $response;
+         }
+         catch (\Exception $e)
+         {
+             Log::error($e->getMessage(), [
+                     'file' => $e->getFile(),
+                     'line' => $e->getLine()
+                 ]
+             );
+ 
+             $response = response()->json(
+                 [
+                     'status'  => 'failed',
+                     'message' => 'Internal error happened. Try again'
+                 ], 200
+             );
+ 
+             return $response;
+         }
+     }
 }

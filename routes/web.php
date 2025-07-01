@@ -79,4 +79,8 @@ Route::group(['prefix' => 'patmanagement','middleware' => 'auth'], function () {
     Route::post('/save', [PatManagementController::class, 'savePatientFlag'])->name('patmanagement.savepatientflag');
 });
 
+Route::group(['prefix' => 'scheduler'], function () {
+    Route::get('/careprov', [DashboardController::class, 'getApiUpdateCareprovider'])->name('sceduler.careprov');
+});
+
 
