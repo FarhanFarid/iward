@@ -37,11 +37,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="anaesconsoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="anaesconsoncallstart" id="anaesconsoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="anaesconsoncallstart" id="anaesconsoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="anaesconsoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="anaesconsoncallend" id="anaesconsoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="anaesconsoncallend" id="anaesconsoncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,11 +63,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="anaessroncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="anaessroncallstart" id="anaessroncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="anaessroncallstart" id="anaessroncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="anaessroncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="anaessroncallend" id="anaessroncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="anaessroncallend" id="anaessroncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,11 +89,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="anaessricuoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="anaessricuoncallstart" id="anaessricuoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="anaessricuoncallstart" id="anaessricuoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="anaessricuoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="anaessricuoncallend" id="anaessricuoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="anaessricuoncallend" id="anaessricuoncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,11 +115,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="anaesmooncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="anaesmooncallstart" id="anaesmooncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="anaesmooncallstart" id="anaesmooncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="anaesmooncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="anaesmooncallend" id="anaesmooncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="anaesmooncallend" id="anaesmooncallend">
                                                     </div>
                                                 </div>
                                             </div>

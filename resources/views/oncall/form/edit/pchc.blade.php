@@ -37,7 +37,7 @@
                                                     </div>
                                                     <div class="col-md-4 p-2">
                                                         <label for="updatepchconcalldate" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Oncall Date:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="updatepchconcalldate" id="updatepchconcalldate" readonly>
+                                                        <input class="form-control form-control-sm" type="date" name="updatepchconcalldate" id="updatepchconcalldate" readonly>
                                                         <input class="form-control form-control-sm" type="hidden" name="ocpchcid" id="ocpchcid">
                                                     </div>
                                                 </div>

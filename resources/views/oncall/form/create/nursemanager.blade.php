@@ -37,11 +37,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmfirstoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmfirstoncallstart" id="nmfirstoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="nmfirstoncallstart" id="nmfirstoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmfirstoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmfirstoncallend" id="nmfirstoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="nmfirstoncallend" id="nmfirstoncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,11 +63,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmseconcallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmseconcallstart" id="nmseconcallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="nmseconcallstart" id="nmseconcallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmseconcallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmseconcallend" id="nmseconcallend">
+                                                        <input class="form-control form-control-sm" type="date" name="nmseconcallend" id="nmseconcallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,11 +89,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmamoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmamoncallstart" id="nmamoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="nmamoncallstart" id="nmamoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmamoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmamoncallend" id="nmamoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="nmamoncallend" id="nmamoncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,11 +115,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmpmoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmpmoncallstart" id="nmpmoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="nmpmoncallstart" id="nmpmoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmpmoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmpmoncallend" id="nmpmoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="nmpmoncallend" id="nmpmoncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,11 +141,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmoncallstart" id="nmoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="nmoncallstart" id="nmoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="nmoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="nmoncallend" id="nmoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="nmoncallend" id="nmoncallend">
                                                     </div>
                                                 </div>
                                             </div>

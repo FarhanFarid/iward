@@ -37,11 +37,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othperfoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othperfoncallstart" id="othperfoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="othperfoncallstart" id="othperfoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othperfoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othperfoncallend" id="othperfoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="othperfoncallend" id="othperfoncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,11 +63,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othdietoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othdietoncallstart" id="othdietoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="othdietoncallstart" id="othdietoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othdietoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othdietoncallend" id="othdietoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="othdietoncallend" id="othdietoncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,11 +89,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othphysiooncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othphysiooncallstart" id="othphysiooncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="othphysiooncallstart" id="othphysiooncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othphysiooncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othphysiooncallend" id="othphysiooncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="othphysiooncallend" id="othphysiooncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,11 +115,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othlaboncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othlaboncallstart" id="othlaboncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="othlaboncallstart" id="othlaboncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othlaboncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othlaboncallend" id="othlaboncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="othlaboncallend" id="othlaboncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,11 +141,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othcvtoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othcvtoncallstart" id="othcvtoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="othcvtoncallstart" id="othcvtoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="othcvtoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="othcvtoncallend" id="othcvtoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="othcvtoncallend" id="othcvtoncallend">
                                                     </div>
                                                 </div>
                                             </div>

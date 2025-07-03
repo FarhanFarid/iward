@@ -77,11 +77,11 @@
                                                     <div class="row mt-2">
                                                         <div class="col-md-6">
                                                             <label for="tloncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="tloncallstart" id="tloncallstart">
+                                                            <input class="form-control form-control-sm" type="date" name="tloncallstart" id="tloncallstart">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="tloncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="tloncallend" id="tloncallend">
+                                                            <input class="form-control form-control-sm" type="date" name="tloncallend" id="tloncallend">
                                                         </div>
                                                     </div>       
                                                 </div>
@@ -141,11 +141,11 @@
                                                         <div class="row mt-2">
                                                             <div class="col-md-6">
                                                                 <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                                <input class="form-control form-control-sm" type="datetime-local" name="ioncallstart{{ $i }}" id="ioncallstart{{ $i }}">
+                                                                <input class="form-control form-control-sm" type="date" name="ioncallstart{{ $i }}" id="ioncallstart{{ $i }}">
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date End:</label>
-                                                                <input class="form-control form-control-sm" type="datetime-local" name="ioncallend{{ $i }}" id="ioncallend{{ $i }}">
+                                                                <input class="form-control form-control-sm" type="date" name="ioncallend{{ $i }}" id="ioncallend{{ $i }}">
                                                             </div>
                                                         </div>
                                                         <div class="text-end mt-2">
@@ -193,11 +193,11 @@
                                                         <div class="row mt-2">
                                                             <div class="col-md-6">
                                                                 <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                                <input class="form-control form-control-sm" type="datetime-local" name="medoncallstart{{ $i }}" id="medoncallstart{{ $i }}">
+                                                                <input class="form-control form-control-sm" type="date" name="medoncallstart{{ $i }}" id="medoncallstart{{ $i }}">
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date End:</label>
-                                                                <input class="form-control form-control-sm" type="datetime-local" name="medoncallend{{ $i }}" id="medoncallend{{ $i }}">
+                                                                <input class="form-control form-control-sm" type="date" name="medoncallend{{ $i }}" id="medoncallend{{ $i }}">
                                                             </div>
                                                         </div>
                                                         <div class="text-end mt-2">
@@ -245,11 +245,11 @@
                                                         <div class="row mt-2">
                                                             <div class="col-md-6">
                                                                 <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                                <input class="form-control form-control-sm" type="datetime-local" name="runoncallstart{{ $i }}" id="runoncallstart{{ $i }}">
+                                                                <input class="form-control form-control-sm" type="date" name="runoncallstart{{ $i }}" id="runoncallstart{{ $i }}">
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date End:</label>
-                                                                <input class="form-control form-control-sm" type="datetime-local" name="runoncallend{{ $i }}" id="runoncallend{{ $i }}">
+                                                                <input class="form-control form-control-sm" type="date" name="runoncallend{{ $i }}" id="runoncallend{{ $i }}">
                                                             </div>
                                                         </div>
                                                         <div class="text-end mt-2">
@@ -308,11 +308,11 @@
                                                     <div class="row mt-2">
                                                         <div class="col-md-6">
                                                             <label for="obsoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="obsoncallstart" id="obsoncallstart">
+                                                            <input class="form-control form-control-sm" type="date" name="obsoncallstart" id="obsoncallstart">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="obsoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="obsoncallend" id="obsoncallend">
+                                                            <input class="form-control form-control-sm" type="date" name="obsoncallend" id="obsoncallend">
                                                         </div>
                                                     </div>       
                                                 </div>

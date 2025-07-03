@@ -77,11 +77,11 @@
                                                     <div class="row mt-2">
                                                         <div class="col-md-6">
                                                             <label for="iooncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="iooncallstart" id="iooncallstart">
+                                                            <input class="form-control form-control-sm" type="date" name="iooncallstart" id="iooncallstart">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="iooncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="iooncallend" id="iooncallend">
+                                                            <input class="form-control form-control-sm" type="date" name="iooncallend" id="iooncallend">
                                                         </div>
                                                     </div>       
                                                 </div>
@@ -129,11 +129,11 @@
                                                     <div class="row mt-2">
                                                         <div class="col-md-6">
                                                             <label for="fwoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="fwoncallstart" id="fwoncallstart">
+                                                            <input class="form-control form-control-sm" type="date" name="fwoncallstart" id="fwoncallstart">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="fwoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="fwoncallend" id="fwoncallend">
+                                                            <input class="form-control form-control-sm" type="date" name="fwoncallend" id="fwoncallend">
                                                         </div>
                                                     </div>       
                                                 </div>
@@ -181,11 +181,11 @@
                                                     <div class="row mt-2">
                                                         <div class="col-md-6">
                                                             <label for="fsoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="fsoncallstart" id="fsoncallstart">
+                                                            <input class="form-control form-control-sm" type="date" name="fsoncallstart" id="fsoncallstart">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="fsoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                            <input class="form-control form-control-sm" type="datetime-local" name="fsoncallend" id="fsoncallend">
+                                                            <input class="form-control form-control-sm" type="date" name="fsoncallend" id="fsoncallend">
                                                         </div>
                                                     </div>       
                                                 </div>
@@ -229,11 +229,11 @@
                                                         <div class="row mt-2">
                                                             <div class="col-md-6">
                                                                 <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                                <input class="form-control form-control-sm" type="datetime-local" name="rsoncallstart{{ $i }}" id="rsoncallstart{{ $i }}">
+                                                                <input class="form-control form-control-sm" type="date" name="rsoncallstart{{ $i }}" id="rsoncallstart{{ $i }}">
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date End:</label>
-                                                                <input class="form-control form-control-sm" type="datetime-local" name="rsoncallend{{ $i }}" id="rsoncallend{{ $i }}">
+                                                                <input class="form-control form-control-sm" type="date" name="rsoncallend{{ $i }}" id="rsoncallend{{ $i }}">
                                                             </div>
                                                         </div>
                                                         <div class="text-end mt-2">

@@ -37,7 +37,7 @@
                                                     </div>
                                                     <div class="col-md-4 p-2">
                                                         <label for="updateanaesoncalldate" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Oncall Date:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="updateanaesoncalldate" id="updateanaesoncalldate" readonly>
+                                                        <input class="form-control form-control-sm" type="date" name="updateanaesoncalldate" id="updateanaesoncalldate" readonly>
                                                         <input class="form-control form-control-sm" type="hidden" name="ocanaesid" id="ocanaesid">
                                                     </div>
                                                 </div>
