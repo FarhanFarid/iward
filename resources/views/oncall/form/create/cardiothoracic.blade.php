@@ -37,11 +37,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallstartcons" id="oncallstartcons">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallstartcons" id="oncallstartcons">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallendcons" id="oncallendcons">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallendcons" id="oncallendcons">
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,11 +63,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallstartfirst" id="oncallstartfirst">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallstartfirst" id="oncallstartfirst">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallendfirst" id="oncallendfirst">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallendfirst" id="oncallendfirst">
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,11 +89,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallstartsec" id="oncallstartsec">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallstartsec" id="oncallstartsec">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallendsec" id="oncallendsec">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallendsec" id="oncallendsec">
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,11 +115,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallstartthird" id="oncallstartthird">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallstartthird" id="oncallstartthird">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallendthird" id="oncallendthird">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallendthird" id="oncallendthird">
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,11 +141,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallstarticuam" id="oncallstarticuam">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallstarticuam" id="oncallstarticuam">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallendicuam" id="oncallendicuam">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallendicuam" id="oncallendicuam">
                                                     </div>
                                                 </div>
                                             </div>
@@ -167,11 +167,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallstarticupm" id="oncallstarticupm">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallstarticupm" id="oncallstarticupm">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="indication" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="oncallendicupm" id="oncallendicupm">
+                                                        <input class="form-control form-control-sm" type="date" name="oncallendicupm" id="oncallendicupm">
                                                     </div>
                                                 </div>
                                             </div>

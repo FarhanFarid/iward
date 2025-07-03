@@ -373,7 +373,7 @@ $(document).ready(function () {
 
     // Add new row
     let procedureIndex = 1;
-    $('.add-procedure-btn').on('click', function () {
+    $(document).on('click', '.add-procedure-btn', function () {
         const newRow = $(`
             <div class="row mb-2 procedure_remark_group align-items-center">
                 <div class="col-md-8 d-flex align-items-center gap-2 flex-wrap">

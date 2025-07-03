@@ -37,11 +37,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdconsoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdconsoncallstart" id="cdconsoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="cdconsoncallstart" id="cdconsoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdconsoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdconsoncallend" id="cdconsoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="cdconsoncallend" id="cdconsoncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,11 +63,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdcardiooncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdcardiooncallstart" id="cdcardiooncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="cdcardiooncallstart" id="cdcardiooncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdcardiooncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdcardiooncallend" id="cdcardiooncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="cdcardiooncallend" id="cdcardiooncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,11 +89,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdfirstoncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdfirstoncallstart" id="cdfirstoncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="cdfirstoncallstart" id="cdfirstoncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdfirstoncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdfirstoncallend" id="cdfirstoncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="cdfirstoncallend" id="cdfirstoncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,11 +115,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdseconcallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdseconcallstart" id="cdseconcallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="cdseconcallstart" id="cdseconcallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdseconcallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdseconcallend" id="cdseconcallend">
+                                                        <input class="form-control form-control-sm" type="date" name="cdseconcallend" id="cdseconcallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,11 +141,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdmooncallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdmooncallstart" id="cdmooncallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="cdmooncallstart" id="cdmooncallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdmooncallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdmooncallend" id="cdmooncallend">
+                                                        <input class="form-control form-control-sm" type="date" name="cdmooncallend" id="cdmooncallend">
                                                     </div>
                                                 </div>
                                             </div>
@@ -167,11 +167,11 @@
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdeponcallstart" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date Start:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdeponcallstart" id="cdeponcallstart">
+                                                        <input class="form-control form-control-sm" type="date" name="cdeponcallstart" id="cdeponcallstart">
                                                     </div>
                                                     <div class="col-md-3 p-2">
                                                         <label for="cdeponcallend" class="form-check-label" style="color: black; font-weight: 700; font-size: 10px;">Date end:</label>
-                                                        <input class="form-control form-control-sm" type="datetime-local" name="cdeponcallend" id="cdeponcallend">
+                                                        <input class="form-control form-control-sm" type="date" name="cdeponcallend" id="cdeponcallend">
                                                     </div>
                                                 </div>
                                             </div>
